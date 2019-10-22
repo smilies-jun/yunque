@@ -1,0 +1,91 @@
+//
+//  YJYQ.pch
+//  yunque
+//
+//  Created by Apple on 2019/10/10.
+//  Copyright © 2019 yj. All rights reserved.
+//
+
+#ifndef YJYQ_h
+#define YJYQ_h
+#import "RDVTabBarItem.h"
+#import "RDVTabBarController.h"
+#import "AFNetworking.h"
+#import "Masonry.h"
+#import "MJRefresh.h"
+#import "YJBaseViewController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import "AnimationView.h"
+#import "UIView+MHCommon.h"
+#import "DateSource.h"
+#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
+#import "NSObject+Property.h"
+#import "UIScrollView+MJRefreshEX.h"
+#import "UIExPickerView.h"
+#import "NoDateTableViewCell.h"
+#import <ReactiveObjC/ReactiveObjC.h>
+#import "UIButton+changeEffectiveArea.h"
+
+#define APP_SECRET @"cdzbMLE20171115"
+//#define BASE_URL @"http://47.96.122.181:9030/maikejia"
+//#define BASE_URL @"http://192.168.3.9:9030/yunque"
+
+#define BASE_URL @"http://39.100.129.115:9030/yunque"
+//#define BASE_URL @"http://192.168.0.110:9030/maikejia"
+//#define BASE_URL @"http://192.168.0.122:9030/maikejia"
+
+//#define BASE_URL @"http://115.198.94.250:9030/maikejia"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#define normal_alert(TITLE,MESSAGE,CANCEL) [[[UIAlertView alloc] initWithTitle:TITLE message:MESSAGE delegate:nil cancelButtonTitle:CANCEL otherButtonTitles:nil, nil] show]
+
+
+#define NSuserSave(OBJECT,KEY) [[NSUserDefaults standardUserDefaults]setObject:OBJECT forKey:KEY]
+
+#define NSuserRemove(KEY)  [[NSUserDefaults standardUserDefaults]removeObjectForKey:KEY]
+
+#define NSuserUse(KEY)  [[NSUserDefaults standardUserDefaults]objectForKey:KEY];
+#define RGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+
+#define random(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+#define randomColor random(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+#define normal_alert(TITLE,MESSAGE,CANCEL) [[[UIAlertView alloc] initWithTitle:TITLE message:MESSAGE delegate:nil cancelButtonTitle:CANCEL otherButtonTitles:nil, nil] show]
+
+//设备主屏宽高
+#define SCREEN_WIDTH ([UIScreen  mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define StatusBarHeight  [[UIApplication sharedApplication]statusBarFrame].size.height
+
+#define font_main_color  colorWithRGB(0.99, 0.79, 0.17)//主要文字，标题
+#define colorWithRGB(r, g, b) [UIColor colorWithRed:(r)  green:(g)  blue:(b) alpha:1.f]
+
+// ScreenWidth & kScreenHeight
+#define kGHScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define kGHScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#define iPhoneXRAndXSMAX (kGHScreenWidth == 414.f && kGHScreenHeight == 896.f ? YES : NO)
+// iPhoneX
+#define iPhoneXAndXS (kGHScreenWidth == 375.f && kGHScreenHeight == 812.f ? YES : NO)
+#define kGHSafeAreaBottomHeight ((iPhoneXAndXS || iPhoneXRAndXSMAX) ?34 : 0)
+// StatusbarH + NavigationH
+#define kGHSafeAreaTopHeight ((iPhoneXAndXS || iPhoneXRAndXSMAX) ? 88.f : 64.f)
+// StatusBarHeight
+#define kStatusBarHeight ((iPhoneXAndXS || iPhoneXRAndXSMAX)  ? 44.f : 20.f)
+// NavigationBarHeigth
+#define kNavBarHeight 44.f
+// TabBarHeight
+#define kTabBarHeight  (iPhoneX ? (49.f+34.f) : 49.f)
+#define XNWindowWidth ([[UIScreen mainScreen] bounds].size.width)
+
+#define XNWindowHeight ([[UIScreen mainScreen] bounds].size.height)
+
+#define XNColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+#define XNFont(font) [UIFont systemFontOfSize:(font)]
+
+
+#define WEAK  @weakify(self);
+#define STRONG  @strongify(self);
+
+#endif /* YJYQ_h */
