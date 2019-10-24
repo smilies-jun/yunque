@@ -20,6 +20,7 @@
 @interface YJUserViewController (){
     NSString *xiaoshouStr;
     NSString *shoukuangStr;
+    NSString *daishoukuangStr;
 }
 @property(nonatomic,strong)UIImageView*XiaoShouImageView;
 
@@ -108,6 +109,7 @@
         //self->myArray = [result objectForKey:@"data"];
         self->xiaoshouStr = [[result objectForKey:@"data"]objectForKey:@"grossSales"];
         self->shoukuangStr =[[result objectForKey:@"data"]objectForKey:@"totalReceipt"];
+        self->daishoukuangStr =[[result objectForKey:@"data"]objectForKey:@"receivable"];
         [self setTopUI];
         [self setJingYingUI];
         [self setGuanLiUI];
@@ -133,7 +135,7 @@
      if ([shoukuangStr integerValue]) {
          xiaoshouLabelNumber.text = xiaoshouStr;
      }else{
-         xiaoshouLabelNumber.text = @"0.00";
+         xiaoshouLabelNumber.text = @"0.0元";
      }
     xiaoshouLabelNumber.textAlignment = NSTextAlignmentCenter;
     xiaoshouLabelNumber.font = [UIFont boldSystemFontOfSize:24];
@@ -164,10 +166,10 @@
     
     UILabel *shouNumber = [[UILabel alloc]init];
 
-      if (shoukuangStr.length) {
-            shouNumber.text = shoukuangStr;
+      if (daishoukuangStr.length) {
+            shouNumber.text = daishoukuangStr;
       }else{
-          shouNumber.text = @"0";
+          shouNumber.text = @"0.0元";
       }
     shouNumber.textAlignment = NSTextAlignmentCenter;
     shouNumber.font = [UIFont boldSystemFontOfSize:24];
@@ -195,7 +197,7 @@
      if ([shoukuangStr integerValue]) {
          shouLabelNumber.text = xiaoshouStr;
      }else{
-         shouLabelNumber.text = @"0.00";
+         shouLabelNumber.text = @"0.0元";
      }
     shouLabelNumber.textAlignment = NSTextAlignmentCenter;
     shouLabelNumber.font = [UIFont boldSystemFontOfSize:24];

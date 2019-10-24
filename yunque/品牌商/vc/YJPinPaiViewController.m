@@ -172,9 +172,9 @@
    
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         if ([[result objectForKey:@"code"]integerValue] == 200) {
-          
             NSDictionary *dic = [result objectForKey:@"data"];
             for (NSDictionary *mydic in [dic objectForKey:@"content"]) {
+                
                 YJPinPaiModel *model = [[YJPinPaiModel alloc]init];
                 model.dataDictionary = mydic;
                 [self->_listArray addObject:model];
@@ -201,37 +201,63 @@
      普通版也可实现一步设置搞定高度自适应，不再推荐使用此套方法，具体参看“UITableView+SDAutoTableViewCellHeight”头文件
     [self.tableView startAutoCellHeightWithCellClasses:@[[DemoVC7Cell class], [DemoVC7Cell2 class]] contentViewWidth:[UIScreen mainScreen].bounds.size.width];
      */
-    return self.listArray.count;
+    if (self.listArray.count) {
+        return self.listArray.count;
+    }
+    return 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
      static NSString *cellID = @"yjpinpaicelll";
-    YJPinPaiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
-          cell = [[YJPinPaiTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     
+    if (self.listArray.count) {
+        YJPinPaiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+         if (cell == nil) {
+               cell = [[YJPinPaiTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+         
+             }
+        
+        cell.model = self.listArray[indexPath.row];
+         
+        return cell;
+    }else{
+        static NSString *identifier = @"NodatBundproductidentifier";
+        
+        NoDateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell) {
+            cell = [[NoDateTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
+            [cell configUI:indexPath];
+            cell.backgroundColor = [UIColor whiteColor];
+            cell.ImageView.image = [UIImage imageNamed:@"暂无客户"];
+            // cell.backgroundColor = colorWithRGB(0.93, 0.93, 0.93);
+            
         }
-   
-   cell.model = self.listArray[indexPath.row];
+        
+        //  cell.ImageView.image = [UIImage imageNamed:@"nodatas@2x"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
     
-   return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.listArray.count) {
+        YJPinPaiModel *model = self.listArray[indexPath.row];
+          UILabel * _atest = [[UILabel alloc]initWithFrame:CGRectZero];
+          _atest.text = model.productAdvanta;
+          _atest.font = [UIFont systemFontOfSize:12];
+          _atest.numberOfLines = 0;
+          _atest.lineBreakMode = NSLineBreakByWordWrapping;
+         CGSize baseSize = CGSizeMake(SCREEN_WIDTH - 40, CGFLOAT_MAX);
+         CGSize labelsize = [_atest sizeThatFits:baseSize];
+        _atest.height = labelsize.height;
+          return labelsize.height + 140 + 40 + 20;
+    }
+    return SCREEN_HEIGHT - 64;
     
-    YJPinPaiModel *model = self.listArray[indexPath.row];
-    UILabel * _atest = [[UILabel alloc]initWithFrame:CGRectZero];
-    _atest.text = model.productAdvanta;
-    _atest.font = [UIFont systemFontOfSize:12];
-    _atest.numberOfLines = 0;
-    _atest.lineBreakMode = NSLineBreakByWordWrapping;
-   CGSize baseSize = CGSizeMake(SCREEN_WIDTH - 40, CGFLOAT_MAX);
-   CGSize labelsize = [_atest sizeThatFits:baseSize];
-  _atest.height = labelsize.height;
-    return labelsize.height + 140 + 40 + 20;
 }
 
 - (CGFloat)cellContentViewWith

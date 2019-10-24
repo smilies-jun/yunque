@@ -103,8 +103,8 @@
     for (int i =0 ; i< 1; i++) {
        // JSCartModel *model = [buyArray objectAtIndex:@"1"];
         [shopArray addObject:@""];
-        NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:@(1),@"number",@(150),@"productAttributesId",monryStr,@"productTotalPrice",_ProductArray,@"skuList", nil];
-        
+        NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:@(1),@"number",_ProductIdStr,@"productAttributesId",monryStr,@"productTotalPrice",_ProductArray,@"skuList", nil];
+        NSLog(@"dic === %@",dic);
         [numArray addObject:dic];
     }
     NSString *userID = NSuserUse(@"userId");

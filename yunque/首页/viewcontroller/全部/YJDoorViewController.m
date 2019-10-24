@@ -142,6 +142,7 @@
     YJShopListViewController *vc = [[YJShopListViewController alloc]init];
     NSString *type = NSuserUse(@"type");
     vc.TypeStr = type;
+    vc.distributor = _distributor;
     vc.cataIdStr =[[dataArray objectAtIndex:indexPath.row]objectForKey:@"categoryId"];
     vc.TitleStr =[[dataArray objectAtIndex:indexPath.row]objectForKey:@"categoryName"];
     [self.navigationController pushViewController:vc animated:NO];

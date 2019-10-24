@@ -193,17 +193,22 @@
     
     NSString *tokenID = NSuserUse(@"token");
     NSString *userID = NSuserUse(@"userId");
-
-   
+    NSString *distributor;
     if ([cataID integerValue]) {
         
     }else{
         cataID = _cataIdStr;
     }
-    NSString *url = [NSString stringWithFormat:@"%@/product/queryAllBybrandID?pirceSort=%ld&pageNum=%d&pageSize=20&shelfSort=2&categoryId=%@&salesVolumeSort=%ld&userId=%@",BASE_URL,(long)sort,page,_cataIdStr,(long)xiaoLiangNumber,userID];
+    if ([_distributor intValue]) {
+        distributor = _distributor;
+    }else{
+        distributor = @"0";
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/product/queryAllBybrandID?pirceSort=%ld&pageNum=%d&pageSize=20&categoryId=%@&salesVolumeSort=%ld&distributor=%@",BASE_URL,(long)sort,page,_cataIdStr,(long)xiaoLiangNumber,distributor];
+    NSLog(@"ur kl == == = %@",url);
     //NSString *hotStrPOST = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
-
         if ([[result objectForKey:@"code"]integerValue] == 200) {
             NSDictionary *dic = [result objectForKey:@"data"];
             for (NSDictionary *mydic in [dic objectForKey:@"content"]) {
@@ -212,7 +217,6 @@
                 model.dataDictionary = mydic;
                 [self->dataArray addObject:model];
             }
-            NSLog(@"da == %lu",(unsigned long)self->dataArray.count);
             if ([[dic objectForKey:@"content"] count]) {
                 [self->shopListTableview endFooterRefresh];;
                 [self->shopListTableview reloadData];
@@ -404,18 +408,14 @@
 }
 //cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([_TypeStr integerValue] ==5) {
          return 140;
-    }else{
-         return 140 + 70;
-    }
+    
    
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (dataArray.count) {
-        if ([_TypeStr integerValue] == 5) {
             static NSString *identifier = @"showTopProidentifier";
             
             YJShowShopTableViewCell   *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -434,33 +434,7 @@
             
             
             return cell;
-        }else{
-            static NSString *identifier = @"showUPTopProidentifier";
-            
-            YJShopUserPostTableViewCell   *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            if (!cell) {
-                cell = [[YJShopUserPostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-                [cell configUI:indexPath];
-            }
-            if (dataArray.count) {
-                YJHotShopModel *model = [dataArray objectAtIndex:indexPath.row];
-                cell.model = model;
-                if ([model.onSale integerValue]) {
-                     [cell.UpShopButton setTitle:@"下架" forState:UIControlStateNormal];
-                    [cell.UpShopButton setBackgroundColor:font_main_color];
-                }else{
-                     [cell.UpShopButton setBackgroundColor:font_main_color];
-                     [cell.UpShopButton setTitle:@"上样" forState:UIControlStateNormal];
-                }
-            }
-            cell.UpShopButton.tag = 100 +indexPath.row;
-            [cell.UpShopButton addTarget:self action:@selector(ShopBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            cell.backgroundColor = [UIColor whiteColor];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            
-            return cell;
-        }
+
         
     }else{
         static NSString *identifier = @"NodatBundproductidentifier";
@@ -518,7 +492,8 @@
     NSString *userID = NSuserUse(@"userId");
      YJHotShopModel *model = [dataArray objectAtIndex:indexPath.row];
     YJShowShopDeatilShopingViewController *vc = [[YJShowShopDeatilShopingViewController alloc]init];
-    vc.WebStr = [NSString stringWithFormat:@"http://192.168.3.3:3001/?token=%@&productid=%@&userid=%@",tokenID,model.commodityId,userID];
+    vc.WebStr = [NSString stringWithFormat:@"http://39.100.129.115:3000/?token=%@&productid=%@&userid=%@",tokenID,model.commodityId,userID];
+    
     vc.ShopIDStr = model.commodityId;
   [self.navigationController pushViewController:vc animated:NO];
 

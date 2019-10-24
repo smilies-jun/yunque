@@ -43,6 +43,7 @@
     style.titleScaleEnabled = NO;
     style.titleFont = [UIFont systemFontOfSize:13];
     style.showBottomLine = YES;
+    style.titleSelectedColor = font_main_color;
     style.bottomLineColor = font_main_color;
     style.titleMargin = 60;
     // 设置标题内容

@@ -147,7 +147,7 @@
         [self.navigationController pushViewController:vc animated:NO];
     }else if (indexPath.row == 3){
         YJProViewController *vc = [[YJProViewController alloc]init];
-        vc.WebStr = @"http://www.maikehome.cn/";
+        vc.WebStr = @"http://39.100.129.115:3000/";
         [self.navigationController pushViewController:vc animated:NO];
     }else{
         [self clearAPP];

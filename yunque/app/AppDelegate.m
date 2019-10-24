@@ -38,7 +38,7 @@
         [platformsRegister setupWeChatWithAppId:@"wx9f953699f9664daa" appSecret:@"67cc9267bee919125ae8c4a7d4aeb4e9"];
         
         //新浪
-        [platformsRegister setupSinaWeiboWithAppkey:@"1681234485" appSecret:@"da35c88e226db85b2e54d1b5e0eba445" redirectUrl:@"http://www.maikehome.cn"];
+        [platformsRegister setupSinaWeiboWithAppkey:@"1681234485" appSecret:@"da35c88e226db85b2e54d1b5e0eba445" redirectUrl:@"http://39.100.129.115:3000"];
 
     }];
    // [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];

@@ -11,10 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YJShopListViewController : YJBaseViewController
+
 @property(nonatomic,strong)NSString *cataIdStr;
 @property(nonatomic,strong)NSString *TypeStr;
 @property(nonatomic,strong)NSString *TitleStr;
 @property(nonatomic,strong)NSString *resultStr;
+@property(nonatomic,copy)NSString *distributor;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

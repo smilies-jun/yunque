@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YJGongYiViewController : YJBaseViewController
+@property(nonatomic,copy)NSString *distributor;
 
 @end
 

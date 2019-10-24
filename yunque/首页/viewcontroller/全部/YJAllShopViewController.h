@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YJAllShopViewController : YJBaseViewController
 @property(nonatomic,copy)NSString *index;
-
+@property(nonatomic,copy)NSString *distributor;
 @property (nonatomic,strong )NSMutableArray *cataIDArray;
 @property (nonatomic,strong )NSMutableArray *titleArray;
 

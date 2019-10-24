@@ -35,11 +35,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.TopView.hidden = NO;
-    self.TopTitleLabel.text = @"商品详情";
+    if (_TitleStr.length) {
+         self.TopTitleLabel.text = _TitleStr;
+    }else{
+         self.TopTitleLabel.text = @"商品详情";
+    }
+   
     [self.BackButton addTarget:self action:@selector(HotListBackClick) forControlEvents:UIControlEventTouchUpInside];
     [self.RightFirstButton addTarget:self action:@selector(showShareSdk) forControlEvents:UIControlEventTouchUpInside];
     [self.RightFirstButton setImage:[UIImage imageNamed:@"分享转发"] forState:UIControlStateNormal];
+    if ([_TypeStr isEqualToString:@"1"]) {
+        self.RightFirstButton.hidden = YES;
+    }else{
+        self.RightFirstButton.hidden = NO;
+
+    }
     shopArray = [[NSArray alloc]init];
+    NSLog(@"web === %@",_WebStr);
     ActivityWebView  = [[WKWebView alloc]init];
     ActivityWebView.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-64-StatusBarHeight);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_WebStr]]];

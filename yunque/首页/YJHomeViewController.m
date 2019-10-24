@@ -21,6 +21,8 @@
 #import "JSCartViewController.h"
 #import "YJShowShopDeatilShopingViewController.h"
 #import "SDCycleScrollView.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 
 @interface YJHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating,UISearchBarDelegate,EVNCustomSearchBarDelegate,PYSearchViewControllerDelegate,SDCycleScrollViewDelegate>{
     PYSearchViewController *searchViewController;
@@ -98,14 +100,14 @@
     urlArray = [[NSMutableArray alloc]init];
     NSString *tokenID = NSuserUse(@"token");
     NSString *url = [NSString stringWithFormat:@"%@/banner/applist",BASE_URL];
-           [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
-               NSArray *myarray = [result objectForKey:@"data"];
-               for (NSDictionary *mydic in myarray) {
-                   [self->imageMuArray addObject:[mydic objectForKey:@"imgUrl"]];
-                   [self->urlArray addObject:[mydic objectForKey:@"url"]];
-               }
-                 [self refreshUserData];
-           }];
+    [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
+            NSArray *myarray = [result objectForKey:@"data"];
+            for (NSDictionary *mydic in myarray) {
+            [self->imageMuArray addObject:[mydic objectForKey:@"imgUrl"]];
+    [self->urlArray addObject:[mydic objectForKey:@"url"]];
+    }
+    [self refreshUserData];
+    }];
     cateIDArray = [[NSMutableArray alloc]init];
     titleArray = [[NSMutableArray alloc]init];
     cateIDArray2 = [[NSMutableArray alloc]init];
@@ -333,7 +335,7 @@
         
         UIButton *allBtn = [UIButton buttonWithType:UIButtonTypeCustom];
        [allBtn setBackgroundImage:[UIImage imageNamed:@"邀请好友卡片"] forState:UIControlStateNormal];
-       [allBtn addTarget:self action:@selector(allShopClick) forControlEvents:UIControlEventTouchUpInside];
+       [allBtn addTarget:self action:@selector(shareMyShop) forControlEvents:UIControlEventTouchUpInside];
        [_ShopTopView addSubview:allBtn];
        [allBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
            make.left.mas_equalTo(_ShopTopView.mas_left).offset(20);
@@ -355,7 +357,7 @@
            }];
         UIButton *qidaiBtn = [UIButton buttonWithType:UIButtonTypeCustom];
            [qidaiBtn setBackgroundImage:[UIImage imageNamed:@"敬请期待卡片"] forState:UIControlStateNormal];
-           [qidaiBtn addTarget:self action:@selector(allShopClick) forControlEvents:UIControlEventTouchUpInside];
+           [qidaiBtn addTarget:self action:@selector(noMoreClick) forControlEvents:UIControlEventTouchUpInside];
            [_ShopTopView addSubview:qidaiBtn];
            [qidaiBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
                make.left.mas_equalTo(dingzhiBtn.mas_right).offset(10);
@@ -382,6 +384,50 @@
     
     return _ShopTopView;
     
+}
+- (void)shareMyShop{
+    NSArray* imageArray = @[[UIImage imageNamed:@"logo.jpg"]];
+       //（注意：图片可以是UIImage对象，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
+       NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+       [shareParams SSDKSetupShareParamsByText:@"云鹊的分享"
+                                        images:imageArray
+                                           url:[NSURL URLWithString:@"http://baidu.com"]
+                                         title:@"分享标题"
+                                          type:SSDKContentTypeAuto];
+       [ShareSDK showShareActionSheet:nil
+                          customItems:nil
+                          shareParams:shareParams
+                   sheetConfiguration:nil
+                       onStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                           switch (state) {
+                               case SSDKResponseStateSuccess:
+                               {
+                                   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                                       message:nil
+                                                                                      delegate:nil
+                                                                             cancelButtonTitle:@"确定"
+                                                                             otherButtonTitles:nil];
+                                   [alertView show];
+                                   break;
+                               }
+                               case SSDKResponseStateFail:
+                               {
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                                   message:[NSString stringWithFormat:@"%@",error]
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"OK"
+                                                                         otherButtonTitles:nil, nil];
+                                   [alert show];
+                                   break;
+                               }
+                               default:
+                                   break;
+                           }
+                       }];
+       
+}
+- (void)noMoreClick{
+    [AnimationView showString:@"跟多功能"];   
 }
 - (UIView *)ScrollView{
     SDCycleScrollView *autoScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200) imageURLStringsGroup:self.imagesURLs];
@@ -729,6 +775,8 @@
 //        });
 //    }
 }
+
+
 - (BOOL)searchBarShouldEndEditing:(EVNCustomSearchBar *)searchBar
 {
     NSLog(@"class: %@ function:%s", NSStringFromClass([self class]), __func__);
@@ -773,6 +821,13 @@
     // 1. 获取输入的值
     //self.inputText = self.searchBar.text;
     //    [self afn1];
+}
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    YJShowShopDeatilShopingViewController *vc= [[YJShowShopDeatilShopingViewController alloc]init];
+    vc.WebStr = [NSString stringWithFormat:@"%@",[urlArray objectAtIndex:index]];
+    vc.TitleStr = @"活动页面";
+    vc.TypeStr = @"1";
+    [self.navigationController   pushViewController:vc animated:NO];
 }
 
 @end

@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)NSString *WebStr;
 @property(nonatomic, strong)NSString *CataIDStr;
 @property(nonatomic, strong)NSString *ShopIDStr;
+
+@property(nonatomic, strong)NSString *TitleStr;
+@property(nonatomic, strong)NSString *TypeStr;
 @end
 
 NS_ASSUME_NONNULL_END

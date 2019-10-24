@@ -142,6 +142,7 @@
     vc.TitleStr =[[dataArray objectAtIndex:indexPath.row]objectForKey:@"categoryName"];
     NSString *type = NSuserUse(@"type");
     vc.TypeStr = type;
+    vc.distributor = _distributor;
     vc.cataIdStr =[[dataArray objectAtIndex:indexPath.row]objectForKey:@"categoryId"];
     [self.navigationController pushViewController:vc animated:NO];
     

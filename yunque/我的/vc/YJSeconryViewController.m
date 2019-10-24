@@ -281,6 +281,7 @@
             [self.navigationController pushViewController:vc animated:NO];
         }else if (indexPath.row ==3){
             YJAllShopViewController *vc = [[YJAllShopViewController alloc]init];
+            vc.distributor = @"1";
                           vc.titleArray = titleArray;
                           vc.cataIDArray = cateIDArray;
                           

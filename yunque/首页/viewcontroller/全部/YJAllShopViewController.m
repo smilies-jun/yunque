@@ -73,19 +73,23 @@
     
   
     YJDoorViewController *door = [[YJDoorViewController alloc] init];
+    door.distributor = _distributor ;
     door.view.backgroundColor = [UIColor whiteColor];
     [self addChildViewController:door];
     
     YJMenPeiViewController *pei = [[YJMenPeiViewController alloc] init];
     pei.view.backgroundColor = [UIColor whiteColor];
+    pei.distributor = _distributor ;
     [self addChildViewController:pei];
     
     YJChuanViewController *chuang = [[YJChuanViewController alloc] init];
     chuang.view.backgroundColor = [UIColor whiteColor ];
+    chuang.distributor = _distributor ;
     [self addChildViewController:chuang];
     
     YJSuoViewController *suo = [[YJSuoViewController alloc] init];
     suo.view.backgroundColor = [UIColor whiteColor];
+    suo.distributor = _distributor ;
     [self addChildViewController:suo];
     
 //    YJGongYiViewController   *yi = [[YJGongYiViewController alloc] init];
