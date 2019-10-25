@@ -103,8 +103,8 @@
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
             NSArray *myarray = [result objectForKey:@"data"];
             for (NSDictionary *mydic in myarray) {
-            [self->imageMuArray addObject:[mydic objectForKey:@"imgUrl"]];
-    [self->urlArray addObject:[mydic objectForKey:@"url"]];
+                [self->imageMuArray addObject:[mydic objectForKey:@"imgUrl"]];
+                [self->urlArray addObject:[mydic objectForKey:@"url"]];
     }
     [self refreshUserData];
     }];
@@ -594,7 +594,7 @@
         NSString *tokenID = NSuserUse(@"token");
         NSString *userID = NSuserUse(@"userId");
         YJShowShopDeatilShopingViewController *vc= [[YJShowShopDeatilShopingViewController alloc]init];
-        vc.WebStr = [NSString stringWithFormat:@"http://39.100.129.115:3000/?token=%@&productid=%@&userid=%@",tokenID,Model.commodityId,userID];
+        vc.WebStr = [NSString stringWithFormat:@"http://h5.yzyunque.com/?token=%@&productid=%@&userid=%@",tokenID,Model.commodityId,userID];
         vc.ShopIDStr = Model.commodityId;
         [self.navigationController   pushViewController:vc animated:NO];
     }

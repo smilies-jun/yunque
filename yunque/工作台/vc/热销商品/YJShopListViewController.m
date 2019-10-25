@@ -492,7 +492,7 @@
     NSString *userID = NSuserUse(@"userId");
      YJHotShopModel *model = [dataArray objectAtIndex:indexPath.row];
     YJShowShopDeatilShopingViewController *vc = [[YJShowShopDeatilShopingViewController alloc]init];
-    vc.WebStr = [NSString stringWithFormat:@"http://39.100.129.115:3000/?token=%@&productid=%@&userid=%@",tokenID,model.commodityId,userID];
+    vc.WebStr = [NSString stringWithFormat:@"http://h5.yzyunque.com/?token=%@&productid=%@&userid=%@",tokenID,model.commodityId,userID];
     
     vc.ShopIDStr = model.commodityId;
   [self.navigationController pushViewController:vc animated:NO];
