@@ -23,6 +23,7 @@
     CustomView *chosePhonelView;
     CustomView *choseBeiZhuDetailView;
     NSArray *myArray;
+      UIScrollView *scrollView;
 }
 @property(nonatomic,strong)NSString *defualtProvince;
 @property(nonatomic,strong)NSString *defualtCity;
@@ -69,6 +70,14 @@
 }
 
 - (void)setUI{
+    scrollView = [[UIScrollView alloc]init];
+    scrollView.backgroundColor = colorWithRGB(0.95, 0.95, 0.95);
+    scrollView.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-44);
+    scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT+300);
+      
+
+    [self.view addSubview:scrollView];
+    
     choseNameView = [[CustomView alloc]init];
     choseNameView.NameLabel.text = @"客户名称";
     choseNameView.NameTextField.placeholder = @"请填写客户名称";
@@ -79,10 +88,10 @@
         //  choseNameView.NameTextField.enabled = YES;
     }
     choseNameView.NameTextField.delegate = self;
-    [self.view addSubview:choseNameView];
+    [scrollView addSubview:choseNameView];
     [choseNameView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left);
-        make.top.mas_equalTo(self.TopView.mas_bottom).offset(1);
+        make.left.mas_equalTo(scrollView.mas_left);
+        make.top.mas_equalTo(scrollView.mas_top).offset(1);
         make.width.mas_equalTo(SCREEN_WIDTH);
         make.height.mas_equalTo(60);
     }];
@@ -96,9 +105,9 @@
     [choseSex.ChooseFirstbutton addTarget:self action:@selector(choseBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [choseSex.ChooseSecondbutton addTarget:self action:@selector(choseBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 
-    [self.view addSubview:choseSex];
+    [scrollView addSubview:choseSex];
     [choseSex mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left);
+        make.left.mas_equalTo(scrollView.mas_left);
         make.top.mas_equalTo(self->choseNameView.mas_bottom).offset(1);
         make.width.mas_equalTo(SCREEN_WIDTH);
         make.height.mas_equalTo(60);
@@ -109,9 +118,9 @@
     choseAdressView.userInteractionEnabled = YES;
     UITapGestureRecognizer  *choseTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(choseAdressClick)];
     [choseAdressView addGestureRecognizer:choseTap];
-    [self.view addSubview:choseAdressView];
+    [scrollView addSubview:choseAdressView];
     [choseAdressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left);
+        make.left.mas_equalTo(scrollView.mas_left);
         make.top.mas_equalTo(self->choseSex.mas_bottom).offset(20);
         make.width.mas_equalTo(SCREEN_WIDTH);
         make.height.mas_equalTo(60);
@@ -125,39 +134,39 @@
         make.width.mas_equalTo(8);
         make.height.mas_equalTo(12);
     }];
-    
+
     choseAdressDetailView = [[CustomView alloc]init];
     choseAdressDetailView.NameLabel.text = @"详细地址";
     choseAdressDetailView.NameTextField.placeholder = @"请填写详细地址";
     choseAdressDetailView.NameTextField.delegate = self;
-    [self.view addSubview:choseAdressDetailView];
+    [scrollView addSubview:choseAdressDetailView];
     [choseAdressDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left);
+        make.left.mas_equalTo(scrollView.mas_left);
         make.top.mas_equalTo(self->choseAdressView.mas_bottom).offset(1);
         make.width.mas_equalTo(SCREEN_WIDTH);
         make.height.mas_equalTo(60);
     }];
-    
+
     chosePhonelView = [[CustomView alloc]init];
     chosePhonelView.NameLabel.text = @"手机号码";
     chosePhonelView.NameTextField.placeholder = @"请填写手机号码";
     chosePhonelView.NameTextField.keyboardType = UIKeyboardTypeNumberPad;
     chosePhonelView.NameTextField.delegate = self;
-    [self.view addSubview:chosePhonelView];
+    [scrollView addSubview:chosePhonelView];
     [chosePhonelView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left);
+        make.left.mas_equalTo(scrollView.mas_left);
         make.top.mas_equalTo(self->choseAdressDetailView.mas_bottom).offset(20);
         make.width.mas_equalTo(SCREEN_WIDTH);
         make.height.mas_equalTo(60);
     }];
-    
+
     choseCustomerDetailView = [[CustomView alloc]init];
     choseCustomerDetailView.NameLabel.text = @"客户需求";
     choseCustomerDetailView.NameTextField.placeholder = @"请填写客户需求";
     choseCustomerDetailView.NameTextField.delegate = self;
-    [self.view addSubview:choseCustomerDetailView];
+    [scrollView addSubview:choseCustomerDetailView];
     [choseCustomerDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left);
+        make.left.mas_equalTo(scrollView.mas_left);
         make.top.mas_equalTo(self->chosePhonelView.mas_bottom).offset(20);
         make.width.mas_equalTo(SCREEN_WIDTH);
         make.height.mas_equalTo(60);
@@ -166,9 +175,9 @@
     choseBeiZhuDetailView.NameLabel.text = @"备      注";
     choseBeiZhuDetailView.NameTextField.placeholder = @"请填写备注";
     choseBeiZhuDetailView.NameTextField.delegate = self;
-    [self.view addSubview:choseBeiZhuDetailView];
+    [scrollView addSubview:choseBeiZhuDetailView];
     [choseBeiZhuDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left);
+        make.left.mas_equalTo(scrollView.mas_left);
         make.top.mas_equalTo(self->choseCustomerDetailView.mas_bottom).offset(1);
         make.width.mas_equalTo(SCREEN_WIDTH);
         make.height.mas_equalTo(60);
@@ -181,7 +190,7 @@
     [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     sureBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [sureBtn addTarget:self action:@selector(nextBtn) forControlEvents:UIControlEventTouchUpInside];
-    [self.view   addSubview:sureBtn];
+    [scrollView   addSubview:sureBtn];
     [sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(20);
         make.right.mas_equalTo(self.view.mas_right).offset(-20);

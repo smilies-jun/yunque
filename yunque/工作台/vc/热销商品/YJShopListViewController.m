@@ -192,7 +192,7 @@
     }
     
     NSString *tokenID = NSuserUse(@"token");
-    NSString *userID = NSuserUse(@"userId");
+    //NSString *userID = NSuserUse(@"userId");
     NSString *distributor;
     if ([cataID integerValue]) {
         

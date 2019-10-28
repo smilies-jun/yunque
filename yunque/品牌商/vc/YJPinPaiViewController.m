@@ -91,7 +91,7 @@
                  withReuseIdentifier:[FCCollectionFooterView footerViewIdentifier]];
     
         _ShopTableView = [[UITableView alloc]init];
-        _ShopTableView.frame = CGRectMake(0, StatusBarHeight+100+40, SCREEN_WIDTH, SCREEN_HEIGHT-100-StatusBarHeight-100-40);
+        _ShopTableView.frame = CGRectMake(0, StatusBarHeight+100+40, SCREEN_WIDTH, SCREEN_HEIGHT-100-StatusBarHeight-40);
        _ShopTableView.delegate = self;
        _ShopTableView.dataSource = self;
        [self.view addSubview:_ShopTableView];

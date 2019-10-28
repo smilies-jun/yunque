@@ -242,7 +242,7 @@
                 make.left.mas_equalTo(_ShopTopView.mas_left).offset(35);
 
             }else{
-                make.left.mas_equalTo(_ShopTopView.mas_left).offset(15);
+                make.left.mas_equalTo(_ShopTopView.mas_left).offset(25);
 
             }
             make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
@@ -269,7 +269,13 @@
         [Door1Btn addTarget:self action:@selector(DoorBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_ShopTopView addSubview:Door1Btn];
         [Door1Btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(DoorBtn.mas_right).offset(35);
+            if (iPhoneXAndXS) {
+                           make.left.mas_equalTo(DoorBtn.mas_right).offset(35);
+
+                       }else{
+                           make.left.mas_equalTo(DoorBtn.mas_right).offset(25);
+
+                       }
             make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
             make.width.mas_equalTo(60);
             make.height.mas_equalTo(60);
@@ -292,7 +298,13 @@
         [Door2Btn addTarget:self action:@selector(DoorBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_ShopTopView addSubview:Door2Btn];
         [Door2Btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(Door1Btn.mas_right).offset(35);
+             if (iPhoneXAndXS) {
+                           make.left.mas_equalTo(Door1Btn.mas_right).offset(35);
+
+                       }else{
+                           make.left.mas_equalTo(Door1Btn.mas_right).offset(25);
+
+                       }
             make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
             make.width.mas_equalTo(60);
             make.height.mas_equalTo(60);
@@ -315,7 +327,13 @@
         [Door3Btn addTarget:self action:@selector(allShopClick) forControlEvents:UIControlEventTouchUpInside];
         [_ShopTopView addSubview:Door3Btn];
         [Door3Btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(Door2Btn.mas_right).offset(35);
+             if (iPhoneXAndXS) {
+                           make.left.mas_equalTo(Door2Btn.mas_right).offset(35);
+
+                       }else{
+                           make.left.mas_equalTo(Door2Btn.mas_right).offset(25);
+
+                       }
             make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
             make.width.mas_equalTo(60);
             make.height.mas_equalTo(60);
@@ -340,8 +358,14 @@
        [allBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
            make.left.mas_equalTo(_ShopTopView.mas_left).offset(20);
            make.top.mas_equalTo(dor3Label.mas_bottom).offset(20);
-           make.width.mas_equalTo(218/2);
-           make.height.mas_equalTo(132/2);
+             if (iPhoneXAndXS) {
+                             make.width.mas_equalTo(218/2);
+                            make.height.mas_equalTo(132/2);
+                        }else{
+                             make.width.mas_equalTo(218/2-10);
+                             make.height.mas_equalTo(132/2-10);
+                        }
+          
 
        }];
         UIButton *dingzhiBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -351,8 +375,13 @@
            [dingzhiBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
                make.left.mas_equalTo(allBtn.mas_right).offset(10);
                make.top.mas_equalTo(dor3Label.mas_bottom).offset(20);
-               make.width.mas_equalTo(218/2);
-               make.height.mas_equalTo(132/2);
+                if (iPhoneXAndXS) {
+                                           make.width.mas_equalTo(218/2);
+                                          make.height.mas_equalTo(132/2);
+                                      }else{
+                                           make.width.mas_equalTo(218/2-10);
+                                           make.height.mas_equalTo(132/2-10);
+                                      }
 
            }];
         UIButton *qidaiBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -362,8 +391,13 @@
            [qidaiBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
                make.left.mas_equalTo(dingzhiBtn.mas_right).offset(10);
                make.top.mas_equalTo(dor3Label.mas_bottom).offset(20);
-               make.width.mas_equalTo(218/2);
-               make.height.mas_equalTo(132/2);
+                 if (iPhoneXAndXS) {
+                                            make.width.mas_equalTo(218/2);
+                                           make.height.mas_equalTo(132/2);
+                                       }else{
+                                            make.width.mas_equalTo(218/2-10);
+                                            make.height.mas_equalTo(132/2-10);
+                                       }
 
            }];
        UILabel *HotLabel = [[UILabel alloc]init];
@@ -386,48 +420,49 @@
     
 }
 - (void)shareMyShop{
-    NSArray* imageArray = @[[UIImage imageNamed:@"logo.jpg"]];
-       //（注意：图片可以是UIImage对象，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
-       NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-       [shareParams SSDKSetupShareParamsByText:@"云鹊的分享"
-                                        images:imageArray
-                                           url:[NSURL URLWithString:@"http://baidu.com"]
-                                         title:@"分享标题"
-                                          type:SSDKContentTypeAuto];
-       [ShareSDK showShareActionSheet:nil
-                          customItems:nil
-                          shareParams:shareParams
-                   sheetConfiguration:nil
-                       onStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-                           switch (state) {
-                               case SSDKResponseStateSuccess:
-                               {
-                                   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
-                                                                                       message:nil
-                                                                                      delegate:nil
-                                                                             cancelButtonTitle:@"确定"
-                                                                             otherButtonTitles:nil];
-                                   [alertView show];
-                                   break;
-                               }
-                               case SSDKResponseStateFail:
-                               {
-                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                                   message:[NSString stringWithFormat:@"%@",error]
-                                                                                  delegate:nil
-                                                                         cancelButtonTitle:@"OK"
-                                                                         otherButtonTitles:nil, nil];
-                                   [alert show];
-                                   break;
-                               }
-                               default:
-                                   break;
-                           }
-                       }];
+      [AnimationView showString:@"邀请好友功能"];
+//    NSArray* imageArray = @[[UIImage imageNamed:@"logo.jpg"]];
+//       //（注意：图片可以是UIImage对象，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
+//       NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+//       [shareParams SSDKSetupShareParamsByText:@"云鹊的分享"
+//                                        images:imageArray
+//                                           url:[NSURL URLWithString:@"http://baidu.com"]
+//                                         title:@"分享标题"
+//                                          type:SSDKContentTypeAuto];
+//       [ShareSDK showShareActionSheet:nil
+//                          customItems:nil
+//                          shareParams:shareParams
+//                   sheetConfiguration:nil
+//                       onStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+//                           switch (state) {
+//                               case SSDKResponseStateSuccess:
+//                               {
+//                                   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+//                                                                                       message:nil
+//                                                                                      delegate:nil
+//                                                                             cancelButtonTitle:@"确定"
+//                                                                             otherButtonTitles:nil];
+//                                   [alertView show];
+//                                   break;
+//                               }
+//                               case SSDKResponseStateFail:
+//                               {
+//                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+//                                                                                   message:[NSString stringWithFormat:@"%@",error]
+//                                                                                  delegate:nil
+//                                                                         cancelButtonTitle:@"OK"
+//                                                                         otherButtonTitles:nil, nil];
+//                                   [alert show];
+//                                   break;
+//                               }
+//                               default:
+//                                   break;
+//                           }
+//                       }];
        
 }
 - (void)noMoreClick{
-    [AnimationView showString:@"跟多功能"];   
+    [AnimationView showString:@"敬请期待"];   
 }
 - (UIView *)ScrollView{
     SDCycleScrollView *autoScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200) imageURLStringsGroup:self.imagesURLs];
@@ -490,7 +525,7 @@
     NSDictionary *dic;
     if ([userID integerValue]) {
         dic = @{@"pageNum":[NSNumber numberWithInteger:page],
-                              @"pageSize":[NSNumber numberWithInteger:20],
+                              @"pageSize":[NSNumber numberWithInteger:10],
                               @"userId":userID,
                               @"groupName":hotStr,
                               };

@@ -124,9 +124,9 @@
     _XiaoShouImageView.layer.cornerRadius = 5.0f;
     [self.view addSubview:_XiaoShouImageView];
     [_XiaoShouImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(20);
+        make.left.mas_equalTo(self.view.mas_left).offset(10);
         make.top.mas_equalTo(self.TopView.mas_bottom).offset(20);
-        make.width.mas_equalTo(SCREEN_WIDTH-40);
+        make.width.mas_equalTo(SCREEN_WIDTH-20);
         make.height.mas_equalTo(180);
     }];
     
@@ -135,14 +135,14 @@
      if ([shoukuangStr integerValue]) {
          xiaoshouLabelNumber.text = xiaoshouStr;
      }else{
-         xiaoshouLabelNumber.text = @"0.0元";
+         xiaoshouLabelNumber.text = @"0.00";
      }
     xiaoshouLabelNumber.textAlignment = NSTextAlignmentCenter;
     xiaoshouLabelNumber.font = [UIFont boldSystemFontOfSize:24];
      xiaoshouLabelNumber.textColor = [UIColor blackColor];
      [_XiaoShouImageView addSubview:xiaoshouLabelNumber];
      [xiaoshouLabelNumber mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(20);
+        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(10);
         make.top.mas_equalTo(_XiaoShouImageView.mas_top).offset(20);
         make.width.mas_equalTo(120);
         make.height.mas_equalTo(20);
@@ -155,7 +155,7 @@
     xiaoshouLabel.textColor = [UIColor blackColor];
     [_XiaoShouImageView addSubview:xiaoshouLabel];
     [xiaoshouLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(20);
+        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(10);
         make.top.mas_equalTo(xiaoshouLabelNumber.mas_bottom).offset(10);
         make.width.mas_equalTo(120);
         make.height.mas_equalTo(20);
@@ -169,15 +169,15 @@
       if (daishoukuangStr.length) {
             shouNumber.text = daishoukuangStr;
       }else{
-          shouNumber.text = @"0.0元";
+          shouNumber.text = @"0.00";
       }
     shouNumber.textAlignment = NSTextAlignmentCenter;
     shouNumber.font = [UIFont boldSystemFontOfSize:24];
     shouNumber.textColor = [UIColor blackColor];
       [_XiaoShouImageView addSubview:shouNumber];
       [shouNumber mas_makeConstraints:^(MASConstraintMaker *make) {
-          make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(20);
-          make.top.mas_equalTo(xiaoshouLabel.mas_bottom).offset(20);
+          make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(10);
+          make.top.mas_equalTo(xiaoshouLabel.mas_bottom).offset(30);
           make.width.mas_equalTo(120);
           make.height.mas_equalTo(20);
       }];
@@ -188,7 +188,7 @@
     shoukLabel.textColor = [UIColor blackColor];
     [_XiaoShouImageView addSubview:shoukLabel];
     [shoukLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(20);
+        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(10);
         make.top.mas_equalTo(shouNumber.mas_bottom).offset(10);
         make.width.mas_equalTo(120);
         make.height.mas_equalTo(20);
@@ -197,15 +197,15 @@
      if ([shoukuangStr integerValue]) {
          shouLabelNumber.text = xiaoshouStr;
      }else{
-         shouLabelNumber.text = @"0.0元";
+         shouLabelNumber.text = @"0.00";
      }
     shouLabelNumber.textAlignment = NSTextAlignmentCenter;
     shouLabelNumber.font = [UIFont boldSystemFontOfSize:24];
      shouLabelNumber.textColor = [UIColor blackColor];
      [_XiaoShouImageView addSubview:shouLabelNumber];
      [shouLabelNumber mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(_XiaoShouImageView.mas_right).offset(-20);
-        make.top.mas_equalTo(xiaoshouLabel.mas_bottom).offset(20);
+        make.right.mas_equalTo(_XiaoShouImageView.mas_right).offset(-10);
+        make.top.mas_equalTo(xiaoshouLabel.mas_bottom).offset(30);
         make.width.mas_equalTo(120);
         make.height.mas_equalTo(20);
      }];
@@ -234,8 +234,13 @@
     [_kehuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(20);
         make.top.mas_equalTo(_XiaoShouImageView.mas_bottom).offset(30);
-        make.width.mas_equalTo(164);
-        make.height.mas_equalTo(110);
+         if (iPhoneXAndXS) {
+                   make.width.mas_equalTo(164);
+                   make.height.mas_equalTo(110);
+               }else{
+                   make.width.mas_equalTo(164-10);
+                   make.height.mas_equalTo(110-5);
+               }
     }];
 
     _ShopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -245,8 +250,14 @@
     [_ShopBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self->_kehuBtn.mas_right).offset(20);
         make.top.mas_equalTo(_XiaoShouImageView.mas_bottom).offset(30);
-        make.width.mas_equalTo(164);
-        make.height.mas_equalTo(110);
+        if (iPhoneXAndXS) {
+            make.width.mas_equalTo(164);
+            make.height.mas_equalTo(110);
+        }else{
+             make.width.mas_equalTo(164-10);
+                               make.height.mas_equalTo(110-5);
+        }
+      
     }];
    
 }
@@ -260,8 +271,13 @@
     [_ShangYangBtn mas_makeConstraints:^(MASConstraintMaker *make) {
              make.left.mas_equalTo(self.view.mas_left).offset(20);
               make.top.mas_equalTo(_kehuBtn.mas_bottom).offset(20);
-              make.width.mas_equalTo(164);
-               make.height.mas_equalTo(110);
+              if (iPhoneXAndXS) {
+                    make.width.mas_equalTo(164);
+                    make.height.mas_equalTo(110);
+                }else{
+                    make.width.mas_equalTo(164-10);
+                                       make.height.mas_equalTo(110-5);
+                     }
     }];
 
     _YuanGongBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -271,8 +287,13 @@
     [_YuanGongBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self->_ShangYangBtn.mas_right).offset(20);
         make.top.mas_equalTo(_kehuBtn.mas_bottom).offset(20);
-        make.width.mas_equalTo(164);
-        make.height.mas_equalTo(110);
+        if (iPhoneXAndXS) {
+                   make.width.mas_equalTo(164);
+                   make.height.mas_equalTo(110);
+               }else{
+                   make.width.mas_equalTo(164-10);
+                                     make.height.mas_equalTo(110-5);
+               }
     }];
 
 }

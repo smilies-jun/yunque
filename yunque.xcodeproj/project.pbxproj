@@ -868,7 +868,7 @@
 		27479686231A904800EF0D2F /* YJSectionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJSectionDetailViewController.m; sourceTree = "<group>"; };
 		2765267E23267D5100F7A2CE /* BottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomView.h; sourceTree = "<group>"; };
 		2765267F23267D5100F7A2CE /* BottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomView.m; sourceTree = "<group>"; };
-		2799F79222D8DDD100A128BA /* 云雀.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "云雀.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2799F79222D8DDD100A128BA /* 云鹊.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "云鹊.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2799F79522D8DDD100A128BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2799F79622D8DDD100A128BA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2799F79822D8DDD100A128BA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -1968,7 +1968,7 @@
 		2799F79322D8DDD100A128BA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2799F79222D8DDD100A128BA /* 云雀.app */,
+				2799F79222D8DDD100A128BA /* 云鹊.app */,
 				2799F7AA22D8DDD200A128BA /* yunqueTests.xctest */,
 				2799F7B522D8DDD200A128BA /* yunqueUITests.xctest */,
 			);
@@ -2294,7 +2294,7 @@
 			);
 			name = yunque;
 			productName = maike;
-			productReference = 2799F79222D8DDD100A128BA /* 云雀.app */;
+			productReference = 2799F79222D8DDD100A128BA /* 云鹊.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2799F7A922D8DDD200A128BA /* yunqueTests */ = {
@@ -2911,7 +2911,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F4L9LL27BL;
+				DEVELOPMENT_TEAM = NVL37LAKGJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/yunque/YJYQ.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -2920,8 +2920,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.maike2.MKhome;
-				PRODUCT_NAME = "云雀";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yunqueooj.yuqnue;
+				PRODUCT_NAME = "云鹊";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2944,8 +2944,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.maike2.MKhome;
-				PRODUCT_NAME = "云雀";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yunqueooj.yuqnue;
+				PRODUCT_NAME = "云鹊";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
