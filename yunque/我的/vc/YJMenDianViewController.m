@@ -77,7 +77,7 @@
     }
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         self->mydic =[result objectForKey:@"data"];
-        NSLog(@"result == %@",result);
+       // NSLog(@"result == %@",result);
         [self initUI];
     }];
 }

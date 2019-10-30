@@ -206,7 +206,7 @@
     }
     
     NSString *url = [NSString stringWithFormat:@"%@/product/queryAllBybrandID?pirceSort=%ld&pageNum=%d&pageSize=20&categoryId=%@&salesVolumeSort=%ld&distributor=%@",BASE_URL,(long)sort,page,_cataIdStr,(long)xiaoLiangNumber,distributor];
-    NSLog(@"ur kl == == = %@",url);
+   // NSLog(@"ur kl == == = %@",url);
     //NSString *hotStrPOST = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         if ([[result objectForKey:@"code"]integerValue] == 200) {

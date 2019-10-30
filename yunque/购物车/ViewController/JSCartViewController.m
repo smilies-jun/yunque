@@ -91,7 +91,7 @@
         self->shopArray = self.viewModel.cartData[0];
         vc.shopMoneyStr = self->priceStr;
         vc.ShopIdStr = self->shopId;
-        [self modefiyGouWuChe];
+       // [self modefiyGouWuChe];
         [self.navigationController pushViewController:vc animated:NO];
     }];
     /* 观察价格属性 */

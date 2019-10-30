@@ -122,7 +122,6 @@
     if (nameStr.length) {
         if ([numberStr integerValue]) {
             NSDictionary *dic = @{@"agreeAgreement":@"1",
-                                    @"appealShopId":_shopId,
                                   @"realName":[_dic objectForKey:@"realName"],
                                   @"identityNumber":[_dic objectForKey:@"identityNumber"],
                                   @"shopName":[_dic objectForKey:@"shopName"],
@@ -320,6 +319,19 @@
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:1 inSection:0];
     [shopListTableview reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+    
+}
+
 /*
 #pragma mark - Navigation
 

@@ -167,7 +167,7 @@
     }
     NSLog(@"url = %@",url);
     [[DateSource sharedInstance]requestHomeWithParameters:(NSMutableDictionary *)mydic withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
-        NSLog(@"re === %@",result);
+        //NSLog(@"re === %@",result);
         if ([[result objectForKey:@"code"]integerValue] == 200) {
             [AnimationView showString:@"操作成功"];
             [self.navigationController popToRootViewControllerAnimated:NO];

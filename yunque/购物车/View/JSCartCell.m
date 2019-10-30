@@ -30,7 +30,7 @@
 - (void)setModel:(JSCartModel *)model{
     
     self.goodsNameLabel.text             = model.p_name;
-    self.GoodsPricesLabel.text           = [NSString stringWithFormat:@"￥%.2f",model.p_price];
+    self.GoodsPricesLabel.text           = [NSString stringWithFormat:@"￥%.2f元",model.p_price];
     self.nummberCount.totalNum           = model.p_stock;
     self.nummberCount.currentCountNumber = model.p_quantity;
     self.selectShopGoodsButton.selected  = model.isSelect;

@@ -132,6 +132,7 @@
     NSString *tokenID = NSuserUse(@"token")
     url = [NSString stringWithFormat:@"%@/brand/brandList",BASE_URL];
         [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
+           // NSLog(@"re === %@",result);
             if ([[result objectForKey:@"code"]integerValue] == 200) {
                 NSDictionary *dic = [result objectForKey:@"data"];
                 for (NSDictionary *mydic in [dic objectForKey:@"content"]) {
@@ -171,9 +172,9 @@
     }
    
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
+        // NSLog(@"re === %@",result);
         if ([[result objectForKey:@"code"]integerValue] == 200) {
             NSDictionary *dic = [result objectForKey:@"data"];
-            NSLog(@"re === %@",result);
             for (NSDictionary *mydic in [dic objectForKey:@"content"]) {
                 
                 YJPinPaiModel *model = [[YJPinPaiModel alloc]init];

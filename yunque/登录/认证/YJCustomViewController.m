@@ -37,6 +37,7 @@
 - (void)InitUI{
     bankCustomView = [[CustomView alloc]init];
     bankCustomView.NameLabel.text = @"银行卡号";
+    bankCustomView.NameTextField.placeholder = @"请输入银行卡号";
     [self.view addSubview:bankCustomView];
     [bankCustomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.TopView.mas_bottom).offset(1);
@@ -45,6 +46,8 @@
         make.height.mas_equalTo(60);
     }];
     bankAdressCustomView = [[CustomView alloc]init];
+    bankAdressCustomView.NameTextField.placeholder = @"开户行";
+
     bankAdressCustomView.NameLabel.text = @"开户行";
     [self.view addSubview:bankAdressCustomView];
     [bankAdressCustomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,6 +57,8 @@
         make.height.mas_equalTo(60);
     }];
     banKNameCustomView = [[CustomView alloc]init];
+    banKNameCustomView.NameTextField.placeholder = @"账户名称";
+
     banKNameCustomView.NameLabel.text = @"账户名称";
     [self.view addSubview:banKNameCustomView];
     [banKNameCustomView mas_makeConstraints:^(MASConstraintMaker *make) {

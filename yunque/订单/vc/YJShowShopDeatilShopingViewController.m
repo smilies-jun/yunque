@@ -67,11 +67,11 @@
     NSString *tokenID = NSuserUse(@"token");
     NSString *userID = NSuserUse(@"userId");
 
-    NSString *UserInfourl = [NSString stringWithFormat:@"%@/product/addFootPrint?userId=%@&productId=%@",BASE_URL,userID,_ShopIDStr];
-    [[DateSource sharedInstance]requestHomeWithParameters:nil withUrl:UserInfourl withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
-        //self->userDic =[result objectForKey:@"data"];
-        //[self SetUi];
-    }];
+//    NSString *UserInfourl = [NSString stringWithFormat:@"%@/product/addFootPrint?userId=%@&productId=%@",BASE_URL,userID,_ShopIDStr];
+//    [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:UserInfourl withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
+//        //self->userDic =[result objectForKey:@"data"];
+//        //[self SetUi];
+//    }];
 }
 
 #pragma mark - WKScriptMessageHandler

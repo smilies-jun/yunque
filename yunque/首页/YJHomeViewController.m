@@ -98,16 +98,8 @@
     
    imageMuArray = [[NSMutableArray alloc]init];
     urlArray = [[NSMutableArray alloc]init];
-    NSString *tokenID = NSuserUse(@"token");
-    NSString *url = [NSString stringWithFormat:@"%@/banner/applist",BASE_URL];
-    [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
-            NSArray *myarray = [result objectForKey:@"data"];
-            for (NSDictionary *mydic in myarray) {
-                [self->imageMuArray addObject:[mydic objectForKey:@"imgUrl"]];
-                [self->urlArray addObject:[mydic objectForKey:@"url"]];
-    }
-    [self refreshUserData];
-    }];
+ 
+   // [self NewData];
     cateIDArray = [[NSMutableArray alloc]init];
     titleArray = [[NSMutableArray alloc]init];
     cateIDArray2 = [[NSMutableArray alloc]init];
@@ -124,6 +116,22 @@
     page = 1;
   
 }
+- (void)NewData{
+    NSString *tokenID = NSuserUse(@"token");
+     NSString *url = [NSString stringWithFormat:@"%@/banner/applist",BASE_URL];
+     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
+             NSArray *myarray = [result objectForKey:@"data"];
+          [self->imageMuArray removeAllObjects];
+          [self->urlArray removeAllObjects];
+             for (NSDictionary *mydic in myarray) {
+                
+                 
+                 [self->imageMuArray addObject:[mydic objectForKey:@"imgUrl"]];
+                 [self->urlArray addObject:[mydic objectForKey:@"url"]];
+     }
+     [self refreshUserData];
+     }];
+}
 - (void)refreshUserData{
      [self reoadDate];
       
@@ -139,7 +147,15 @@
     return imageMuArray;
 }
 - (void)reoadDate{
-   
+    [self->cateIDArray removeAllObjects];
+     [self->titleArray removeAllObjects];
+     [self->cateIDArray2 removeAllObjects];
+     [self->titleArray2 removeAllObjects];
+     [self->cateIDArray3 removeAllObjects];
+     [self->titleArray3 removeAllObjects];
+    [self->cateIDArray4 removeAllObjects];
+     [self->titleArray4 removeAllObjects];
+    
     NSString *url = [NSString stringWithFormat:@"%@/essentialData/classManagment/findClass",BASE_URL];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:nil usingBlock:^(NSDictionary *result, NSError *error) {
         NSArray *myarray = [result objectForKey:@"data"];
@@ -722,9 +738,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self HideKeyBoardClick];
-    //[self getNetworkData:YES];
-    //searchViewController.hidesBottomBarWhenPushed = YES;
-   //[self setStatusBarBackgroundColor:colorWithRGB(0.25, 0.33, 1.0)];
+    [self NewData];
     NSString *tokenID = NSuserUse(@"token");
     NSString *Status = NSuserUse(@"status");
     NSString *UserInfourl = [NSString stringWithFormat:@"%@/client/userInfo",BASE_URL];

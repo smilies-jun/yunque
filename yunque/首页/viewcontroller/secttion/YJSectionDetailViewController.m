@@ -167,7 +167,7 @@
     NSLog(@"url = %@",url);
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         if ([[result objectForKey:@"code"]integerValue] == 200) {
-            NSLog(@"re === %@",result);
+          //  NSLog(@"re === %@",result);
             NSArray *array = [result objectForKey:@"data"];
             for (NSDictionary *mydic in array) {
                 YJHotShopModel *model = [[YJHotShopModel alloc]init];

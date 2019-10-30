@@ -113,13 +113,15 @@
     NSString *userID = NSuserUse(@"userId");
     
     NSString *tokenID = NSuserUse(@"token");
-    NSDictionary *dic = @{@"orderDetailParamList":numArray,
+    NSDictionary *dic = @{
                           @"customerId":buyIdStr,
                           @"sellerId":userID,
                           @"shoppingDetailIdList":shopArray
                           };
+    NSLog(@"dic == %@",dic);
     NSString *url = [NSString stringWithFormat:@"%@/app/order/createOrder",BASE_URL];
     [[DateSource sharedInstance]requestHomeWithParameters:(NSMutableDictionary *)dic withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
+        NSLog(@"re == %@",result);
         if ([[result objectForKey:@"code"]integerValue] == 200) {
             YJPayViewController *vc = [[YJPayViewController alloc]init];
             vc.shopId = [[result objectForKey:@"data"]objectForKey:@"orderId"];;

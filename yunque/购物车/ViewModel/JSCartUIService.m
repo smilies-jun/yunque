@@ -152,10 +152,33 @@
     cell.nummberCount.NumberChangeBlock = ^(NSInteger changeCount){
         STRONG
         [self.viewModel rowChangeQuantity:changeCount indexPath:indexPath];
+        [self changeCount:changeCount indexPath:indexPath];
     };
     cell.model = model;
 }
 
+- (void)changeCount:(NSInteger)quantity indexPath:(NSIndexPath *)indexPath{
+        NSInteger section = indexPath.section;
+        NSInteger row = indexPath.row;
+     JSCartModel *model = self.viewModel.cartData[section][row];
+    
+       NSString *tokenID = NSuserUse(@"token");
+     
+       
+       NSDictionary *dic = @{@"cartDetailId":model.p_product_id,
+                             @"number":@(quantity),
+                             @"price":@(model.p_price),
+                             };
+
+       NSString *url = [NSString stringWithFormat:@"%@/app/shopCart/update",BASE_URL];
+       [[DateSource sharedInstance]requestHomeWithParameters:(NSMutableDictionary *)dic withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
+           if ([[result objectForKey:@"code"]integerValue] == 200) {
+               
+           }else{
+               [AnimationView showString:[result objectForKey:@"errmsg"]];
+           }
+       }];
+}
 #pragma mark - delete
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     
