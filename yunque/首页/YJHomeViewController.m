@@ -126,7 +126,7 @@
 }
 - (void)refreshUserData{
      [self reoadDate];
-       [self getNetworkData:YES];
+      
 }
 #pragma mark - Getter and Setter
 - (NSArray *)imagesURLs {
@@ -229,7 +229,7 @@
         _ShopTopView = [[UIView alloc]init];
         _ShopTopView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 260);
         _ShopTopView.backgroundColor = colorWithRGB(0.97, 0.97, 0.97);
-
+      
        
         UIButton *DoorBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [DoorBtn setBackgroundImage:[UIImage imageNamed:@"门类"] forState:UIControlStateNormal];
@@ -240,10 +240,10 @@
         [DoorBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             if (iPhoneXAndXS) {
                 make.left.mas_equalTo(_ShopTopView.mas_left).offset(35);
-
+            }else if (iPhoneXRAndXSMAX){
+                  make.left.mas_equalTo(_ShopTopView.mas_left).offset(35);
             }else{
                 make.left.mas_equalTo(_ShopTopView.mas_left).offset(25);
-
             }
             make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
             make.width.mas_equalTo(60);
@@ -270,12 +270,15 @@
         [_ShopTopView addSubview:Door1Btn];
         [Door1Btn mas_makeConstraints:^(MASConstraintMaker *make) {
             if (iPhoneXAndXS) {
-                           make.left.mas_equalTo(DoorBtn.mas_right).offset(35);
-
-                       }else{
                            make.left.mas_equalTo(DoorBtn.mas_right).offset(25);
 
-                       }
+            }else if (iPhoneXRAndXSMAX){
+                  make.left.mas_equalTo(DoorBtn.mas_right).offset(35);
+            }
+            else{
+                  make.left.mas_equalTo(DoorBtn.mas_right).offset(25);
+
+              }
             make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
             make.width.mas_equalTo(60);
             make.height.mas_equalTo(60);
@@ -299,8 +302,10 @@
         [_ShopTopView addSubview:Door2Btn];
         [Door2Btn mas_makeConstraints:^(MASConstraintMaker *make) {
              if (iPhoneXAndXS) {
-                           make.left.mas_equalTo(Door1Btn.mas_right).offset(35);
+                           make.left.mas_equalTo(Door1Btn.mas_right).offset(25);
 
+                       }else if (iPhoneXRAndXSMAX){
+                             make.left.mas_equalTo(Door1Btn.mas_right).offset(35);
                        }else{
                            make.left.mas_equalTo(Door1Btn.mas_right).offset(25);
 
@@ -328,8 +333,10 @@
         [_ShopTopView addSubview:Door3Btn];
         [Door3Btn mas_makeConstraints:^(MASConstraintMaker *make) {
              if (iPhoneXAndXS) {
-                           make.left.mas_equalTo(Door2Btn.mas_right).offset(35);
+                           make.left.mas_equalTo(Door2Btn.mas_right).offset(25);
 
+                       }else if (iPhoneXRAndXSMAX){
+                             make.left.mas_equalTo(Door2Btn.mas_right).offset(35);
                        }else{
                            make.left.mas_equalTo(Door2Btn.mas_right).offset(25);
 
@@ -356,14 +363,17 @@
        [allBtn addTarget:self action:@selector(shareMyShop) forControlEvents:UIControlEventTouchUpInside];
        [_ShopTopView addSubview:allBtn];
        [allBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
-           make.left.mas_equalTo(_ShopTopView.mas_left).offset(20);
+           make.left.mas_equalTo(_ShopTopView.mas_left).offset(25);
            make.top.mas_equalTo(dor3Label.mas_bottom).offset(20);
              if (iPhoneXAndXS) {
-                             make.width.mas_equalTo(218/2);
-                            make.height.mas_equalTo(132/2);
-                        }else{
-                             make.width.mas_equalTo(218/2-10);
-                             make.height.mas_equalTo(132/2-10);
+                make.width.mas_equalTo(218/2);
+                make.height.mas_equalTo(132/2);
+             }else if (iPhoneXRAndXSMAX){
+                 make.width.mas_equalTo(230/2);
+                 make.height.mas_equalTo(140/2);
+             }else{
+                  make.width.mas_equalTo(218/2-10);
+                make.height.mas_equalTo(132/2-10);
                         }
           
 
@@ -378,6 +388,9 @@
                 if (iPhoneXAndXS) {
                                            make.width.mas_equalTo(218/2);
                                           make.height.mas_equalTo(132/2);
+                                      }else if (iPhoneXRAndXSMAX){
+                                          make.width.mas_equalTo(230/2);
+                                          make.height.mas_equalTo(140/2);
                                       }else{
                                            make.width.mas_equalTo(218/2-10);
                                            make.height.mas_equalTo(132/2-10);
@@ -394,6 +407,9 @@
                  if (iPhoneXAndXS) {
                                             make.width.mas_equalTo(218/2);
                                            make.height.mas_equalTo(132/2);
+                                       }else if (iPhoneXRAndXSMAX){
+                                        make.width.mas_equalTo(230/2);
+                                        make.height.mas_equalTo(140/2);
                                        }else{
                                             make.width.mas_equalTo(218/2-10);
                                             make.height.mas_equalTo(132/2-10);
@@ -462,7 +478,7 @@
        
 }
 - (void)noMoreClick{
-    [AnimationView showString:@"敬请期待"];   
+    [AnimationView showString:@"敬请期待"];
 }
 - (UIView *)ScrollView{
     SDCycleScrollView *autoScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200) imageURLStringsGroup:self.imagesURLs];
@@ -488,7 +504,7 @@
         //weakSelf.page = pageIndex;
         [weakSelf getNetworkData:NO];
     }];
-    
+     [self getNetworkData:YES];
   
 }
 - (void)loadoneNew{
@@ -529,6 +545,7 @@
                               @"userId":userID,
                               @"groupName":hotStr,
                               };
+
         [[DateSource sharedInstance]requestHomeWithParameters:dic withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
             if ([[result objectForKey:@"code"]integerValue] == 200) {
                 NSDictionary *dic = [result objectForKey:@"data"];

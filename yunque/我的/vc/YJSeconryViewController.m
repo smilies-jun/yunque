@@ -125,12 +125,19 @@
 }
 
 - (void)SetUi{
-    shopListTableview = [[UITableView alloc]init];
-    shopListTableview.frame = CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-20);
+    shopListTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-20) style:UITableViewStylePlain];
     shopListTableview.delegate = self;
     shopListTableview.dataSource = self;
     shopListTableview.tableFooterView = [UIView new];
+    shopListTableview.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
     [self.view addSubview:shopListTableview];
+    
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+    view.backgroundColor = colorWithRGB(0.97, 0.97, 0.97);
+    return view;
     
 }
 
@@ -141,19 +148,24 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         return 1;
+    }else if (section == 1){
+        return 4;
     }else{
-        return 6;
+        return 2;
     }
     
     
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 //组头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
+    if (section == 0) {
+        return 0;
+    }
+    return 10;
 }
 //cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -197,56 +209,78 @@
             cell = [[YJSetDetailTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             [cell configUI:indexPath];
         }
-        switch (indexPath.row) {
-            case 0:
-                if ([[userDic objectForKey:@"applyType"]integerValue] == 1) {
-                    cell.stateImageView.hidden = NO;
-                    cell.adressLabel.hidden = YES;
-                }else if ([[userDic objectForKey:@"applyType"]integerValue] == 2){
-                    cell.adressLabel.hidden = NO;
-                    cell.adressLabel.text = @"认证失败";
-                    cell.stateImageView.hidden = YES;
-                }else{
-                    cell.adressLabel.hidden = NO;
-                    cell.adressLabel.text = @"正在认证";
-                     cell.stateImageView.hidden = YES;
-                }
-                cell.iconImageView.image = [UIImage imageNamed:@"门店信息"];
-                cell.NameLabel.text = @"门店信息";
-                break;
-            case 1:
-                 cell.stateImageView.hidden = YES;
-                 cell.adressLabel.hidden = YES;
-                 cell.iconImageView.image = [UIImage imageNamed:@"我的二维码"];
-                cell.NameLabel.text = @"我的二维码";
-                break;
-            case 2:
-                 cell.stateImageView.hidden = YES;
-                 cell.adressLabel.hidden = YES;
-                 cell.iconImageView.image = [UIImage imageNamed:@"收藏"];
-                cell.NameLabel.text = @"收藏";
-                break;
-            case 3:
-                 cell.stateImageView.hidden = YES;
-                 cell.adressLabel.hidden = YES;
-                 cell.iconImageView.image = [UIImage imageNamed:@"我的店铺"];
-                cell.NameLabel.text = @"我的店铺";
-                break;
-            case 4:
-                 cell.stateImageView.hidden = YES;
-                 cell.adressLabel.hidden = YES;
-                 cell.iconImageView.image = [UIImage imageNamed:@"设置"];
-                cell.NameLabel.text = @"设置";
-                break;
-            case 5:
-                       cell.stateImageView.hidden = YES;
-                       cell.adressLabel.hidden = YES;
-                       cell.iconImageView.image = [UIImage imageNamed:@"联系我们"];
-                      cell.NameLabel.text = @"联系我们";
-                      break;
-            default:
-                break;
+        
+        if (indexPath.section == 1) {
+            switch (indexPath.row) {
+                       case 0:
+                           if ([[userDic objectForKey:@"applyType"]integerValue] == 1) {
+                               cell.stateImageView.hidden = NO;
+                               cell.adressLabel.hidden = YES;
+                           }else if ([[userDic objectForKey:@"applyType"]integerValue] == 2){
+                               cell.adressLabel.hidden = NO;
+                               cell.adressLabel.text = @"认证失败";
+                               cell.stateImageView.hidden = YES;
+                           }else{
+                               cell.adressLabel.hidden = NO;
+                               cell.adressLabel.text = @"正在认证";
+                                cell.stateImageView.hidden = YES;
+                           }
+                           cell.iconImageView.image = [UIImage imageNamed:@"门店信息"];
+                           cell.NameLabel.text = @"门店信息";
+                           break;
+                       case 1:
+                            cell.stateImageView.hidden = YES;
+                            cell.adressLabel.hidden = YES;
+                            cell.iconImageView.image = [UIImage imageNamed:@"我的二维码"];
+                           cell.NameLabel.text = @"我的二维码";
+                           break;
+                       case 2:
+                            cell.stateImageView.hidden = YES;
+                            cell.adressLabel.hidden = YES;
+                            cell.iconImageView.image = [UIImage imageNamed:@"收藏"];
+                           cell.NameLabel.text = @"收藏";
+                           break;
+                       case 3:
+                            cell.stateImageView.hidden = YES;
+                            cell.adressLabel.hidden = YES;
+                            cell.iconImageView.image = [UIImage imageNamed:@"我的店铺"];
+                           cell.NameLabel.text = @"我的店铺";
+                           break;
+                       case 4:
+                            cell.stateImageView.hidden = YES;
+                            cell.adressLabel.hidden = YES;
+                            cell.iconImageView.image = [UIImage imageNamed:@"设置"];
+                           cell.NameLabel.text = @"设置";
+                           break;
+                       case 5:
+                                  cell.stateImageView.hidden = YES;
+                                  cell.adressLabel.hidden = YES;
+                                  cell.iconImageView.image = [UIImage imageNamed:@"联系我们"];
+                                 cell.NameLabel.text = @"联系我们";
+                                 break;
+                       default:
+                           break;
+                   }
+        }else{
+            switch (indexPath.row) {
+              
+                       case 0:
+                            cell.stateImageView.hidden = YES;
+                            cell.adressLabel.hidden = YES;
+                            cell.iconImageView.image = [UIImage imageNamed:@"联系我们"];
+                           cell.NameLabel.text = @"联系我们";
+                           break;
+                       case 1:
+                                  cell.stateImageView.hidden = YES;
+                                  cell.adressLabel.hidden = YES;
+                                  cell.iconImageView.image = [UIImage imageNamed:@"设置"];
+                                 cell.NameLabel.text = @"设置";
+                                 break;
+                       default:
+                           break;
+                   }
         }
+       
         cell.backgroundColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -293,8 +327,16 @@
                           vc.cataIDArray4 = cateIDArray4;
             [self.navigationController pushViewController:vc animated:NO];
         }else if (indexPath.row == 5){
-           
+            NSMutableString* str=[[NSMutableString alloc]initWithFormat:@"tel:%@",@"186xxxx6979"];[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }
+    }else{
+        if (indexPath.row == 0) {
+            NSMutableString* str=[[NSMutableString alloc]initWithFormat:@"tel:%@",@"186xxxx6979"];[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }else{
+            YJUserSetViewController *vc = [[YJUserSetViewController alloc]init];
+                      [self.navigationController pushViewController:vc animated:NO];
+        }
+        
     }
    
     

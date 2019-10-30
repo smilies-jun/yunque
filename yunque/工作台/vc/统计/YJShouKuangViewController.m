@@ -118,7 +118,7 @@
         make.height.mas_equalTo(30);
     }];
     UILabel *xiaoshouLabel = [[UILabel alloc]init];
-    xiaoshouLabel.text = @"累计销售额";
+    xiaoshouLabel.text = @"累计收款额";
     xiaoshouLabel.textColor = colorWithRGB(0.56, 0.56, 0.56);
     xiaoshouLabel.font = [UIFont systemFontOfSize:12];
     [scrollView addSubview:xiaoshouLabel];
@@ -247,7 +247,7 @@
     self.barChart = [[ZFBarChart alloc] initWithFrame:CGRectMake(0, 140, SCREEN_WIDTH,300)];
     self.barChart.dataSource = self;
     self.barChart.delegate = self;
-    self.barChart.topicLabel.text = @"销售额";
+    self.barChart.topicLabel.text = @"收款额";
     self.barChart.topicLabel.frame = CGRectMake(40, 0, 200, 20);
     self.barChart.topicLabel.textAlignment = NSTextAlignmentLeft;
     self.barChart.unit = @"万";
@@ -281,7 +281,7 @@
     self.waveChart = [[ZFWaveChart alloc] initWithFrame:CGRectMake(0, 440, SCREEN_WIDTH, 300)];
     self.waveChart.dataSource = self;
     self.waveChart.delegate = self;
-    self.waveChart.topicLabel.text = @"销售额增长率";
+    self.waveChart.topicLabel.text = @"收款额增长率";
     self.waveChart.topicLabel.frame = CGRectMake(40, 0, 200, 20);
     self.waveChart.topicLabel.textAlignment = NSTextAlignmentLeft;
     self.waveChart.unit = @"万";

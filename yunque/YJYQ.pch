@@ -28,10 +28,14 @@
 #import "UIButton+changeEffectiveArea.h"
 
 #define APP_SECRET @"cdzbMLE20171115"
+
+
 //#define BASE_URL @"http://192.168.3.9:9030/yunque"
-//#define BASE_URL @"http://192.168.3.9:9030/yunque"
+//#define BASE_URL @"http://192.168.3.28:9030/yunque"
 #define BASE_URL @"http://a.yzyunque.com/yunque"
-//
+
+
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #define normal_alert(TITLE,MESSAGE,CANCEL) [[[UIAlertView alloc] initWithTitle:TITLE message:MESSAGE delegate:nil cancelButtonTitle:CANCEL otherButtonTitles:nil, nil] show]
@@ -60,7 +64,7 @@
 #define kGHScreenWidth  [UIScreen mainScreen].bounds.size.width
 #define kGHScreenHeight [UIScreen mainScreen].bounds.size.height
 
-#define iPhoneXRAndXSMAX (kGHScreenWidth == 414.f && kGHScreenHeight == 896.f ? YES : NO)
+#define iPhoneXRAndXSMAX (kGHScreenWidth == 414.f ? YES : NO)
 // iPhoneX
 #define iPhoneXAndXS (kGHScreenWidth == 375.f && kGHScreenHeight == 812.f ? YES : NO)
 #define kGHSafeAreaBottomHeight ((iPhoneXAndXS || iPhoneXRAndXSMAX) ?34 : 0)

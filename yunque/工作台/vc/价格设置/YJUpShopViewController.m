@@ -40,6 +40,7 @@
     NSString *url = [NSString stringWithFormat:@"%@/categoryprice/list?pageNum=1&pageSize=10",BASE_URL];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         self->Myarray = [[result objectForKey:@"data"]objectForKey:@"content"];
+      
         [self->shopListTableview reloadData];
     }];
     
@@ -167,9 +168,14 @@
     cell.NameLabel.text= [dic objectForKey:@"ruleName"];
     cell.MoneyLabel.text = [NSString stringWithFormat:@"%@%%",[dic objectForKey:@"profitMargin"]];
     NSArray *resultArray = [dic objectForKey:@"category"];
-    NSString *styleStr;
-    styleStr = [resultArray componentsJoinedByString:@";"];
-    cell.TypeLabel.text = styleStr;
+    if ([[dic objectForKey:@"allCategory"]integerValue] == 1) {
+       cell.TypeLabel.text = @"全部商品";
+    }else{
+        NSString *styleStr;
+           styleStr = [resultArray componentsJoinedByString:@";"];
+           cell.TypeLabel.text = styleStr;
+    }
+   
     cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

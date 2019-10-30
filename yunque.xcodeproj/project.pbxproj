@@ -2920,7 +2920,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yunqueooj.yuqnue;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yunqueooii.yuqnue;
 				PRODUCT_NAME = "云鹊";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2944,7 +2944,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yunqueooj.yuqnue;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yunqueooii.yuqnue;
 				PRODUCT_NAME = "云鹊";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

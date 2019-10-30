@@ -58,8 +58,8 @@
     //创建布局对象
     UILabel *label = [[UILabel alloc]init];
     label.text = @"推荐品牌";
-    label.font =[UIFont boldSystemFontOfSize:15];
-    label.frame = CGRectMake(40, 20, 80, 20);
+    label.font =[UIFont boldSystemFontOfSize:14];
+    label.frame = CGRectMake(20, 20, 80, 20);
     [self.view addSubview:label];
     
        UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
@@ -173,6 +173,7 @@
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         if ([[result objectForKey:@"code"]integerValue] == 200) {
             NSDictionary *dic = [result objectForKey:@"data"];
+            NSLog(@"re === %@",result);
             for (NSDictionary *mydic in [dic objectForKey:@"content"]) {
                 
                 YJPinPaiModel *model = [[YJPinPaiModel alloc]init];

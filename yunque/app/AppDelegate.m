@@ -55,14 +55,14 @@
         NSLog(@"已经登陆");
         [self.window setRootViewController:self.viewController];
         [self.window makeKeyAndVisible];
-        KSGuaidManager.images = @[[UIImage imageNamed:@"guide01"],
-                              [UIImage imageNamed:@"guide02"],
-                              [UIImage imageNamed:@"guide03"],
-                              [UIImage imageNamed:@"guide04"]];
-    
-    KSGuaidManager.shouldDismissWhenDragging = YES;
-    
-    [KSGuaidManager begin];
+//        KSGuaidManager.images = @[[UIImage imageNamed:@"guide01"],
+//                              [UIImage imageNamed:@"guide02"],
+//                              [UIImage imageNamed:@"guide03"],
+//                              [UIImage imageNamed:@"guide04"]];
+//    
+//    KSGuaidManager.shouldDismissWhenDragging = YES;
+//    
+//    [KSGuaidManager begin];
         [NSThread sleepForTimeInterval:2.0];
         [self customizeInterface];
   //  }
@@ -102,7 +102,7 @@
     UIImage *finishedImage = [UIImage imageNamed:@"tabbarbg_normal"];
     UIImage *unfinishedImage = [UIImage imageNamed:@"tabbarbg_normal"];
     NSArray *tabBarItemImages = @[@"ShouYe", @"XinPing", @"GongZuoTai",@"DingDan",@"WoDe"];
-    NSArray *tabBarItemNames = @[@"首页", @"品牌商", @"工作台",@"订单",@"我的"];
+    NSArray *tabBarItemNames = @[@"首页", @"发现", @"工作台",@"订单",@"我的"];
     NSInteger index = 0;
     [[tabBarController tabBar] setBackgroundColor:[UIColor whiteColor]];
     for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {

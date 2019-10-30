@@ -237,7 +237,10 @@
          if (iPhoneXAndXS) {
                    make.width.mas_equalTo(164);
                    make.height.mas_equalTo(110);
-               }else{
+         }else if (iPhoneXRAndXSMAX){
+             make.width.mas_equalTo(180);
+             make.height.mas_equalTo(120);
+         }else{
                    make.width.mas_equalTo(164-10);
                    make.height.mas_equalTo(110-5);
                }
@@ -253,6 +256,9 @@
         if (iPhoneXAndXS) {
             make.width.mas_equalTo(164);
             make.height.mas_equalTo(110);
+        }else if (iPhoneXRAndXSMAX){
+            make.width.mas_equalTo(180);
+            make.height.mas_equalTo(120);
         }else{
              make.width.mas_equalTo(164-10);
                                make.height.mas_equalTo(110-5);
@@ -274,6 +280,9 @@
               if (iPhoneXAndXS) {
                     make.width.mas_equalTo(164);
                     make.height.mas_equalTo(110);
+                }else if (iPhoneXRAndXSMAX){
+                    make.width.mas_equalTo(180);
+                    make.height.mas_equalTo(120);
                 }else{
                     make.width.mas_equalTo(164-10);
                                        make.height.mas_equalTo(110-5);
@@ -290,6 +299,9 @@
         if (iPhoneXAndXS) {
                    make.width.mas_equalTo(164);
                    make.height.mas_equalTo(110);
+               }else if (iPhoneXRAndXSMAX){
+                   make.width.mas_equalTo(180);
+                   make.height.mas_equalTo(120);
                }else{
                    make.width.mas_equalTo(164-10);
                                      make.height.mas_equalTo(110-5);

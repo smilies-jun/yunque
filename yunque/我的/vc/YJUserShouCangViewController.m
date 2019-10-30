@@ -184,7 +184,7 @@
 //    if (page ==1) {
 //        [dataArray  removeAllObjects];
 //    }
-    
+    [dataArray removeAllObjects];
     NSString *tokenID = NSuserUse(@"token");
     NSString *userID = NSuserUse(@"userId");
     NSString *url = [NSString stringWithFormat:@"%@/product/queryFavorite?userId=%@",BASE_URL,userID];

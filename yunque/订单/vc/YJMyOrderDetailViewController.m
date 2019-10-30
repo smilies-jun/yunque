@@ -341,7 +341,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setStatusBarBackgroundColor:colorWithRGB(0.25, 0.33, 1)];
+    [self setStatusBarBackgroundColor:font_main_color];
 
     [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
 }
