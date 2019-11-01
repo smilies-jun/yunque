@@ -101,6 +101,7 @@
     }];
     choseHeightView = [[CustomView alloc]init];
     choseHeightView.NameLabel.text = @"门头高";
+    
     choseHeightView.NameTextField.keyboardType = UIKeyboardTypeNumberPad;
     choseHeightView.NameTextField.delegate = self;
     [scrollView addSubview:choseHeightView];
@@ -125,7 +126,7 @@
     choseDongHeightView = [[CustomView alloc]init];
     choseDongHeightView.NameLabel.text = @"颜色";
     choseDongHeightView.NameTextField.delegate = self;
-
+      choseDongHeightView.NameTextField.placeholder = @"选填";
     [scrollView addSubview:choseDongHeightView];
     [choseDongHeightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left);
@@ -181,7 +182,7 @@
     choseMenView = [[CustomView alloc]init];
     choseMenView.NameLabel.text = @"颜色";
     choseMenView.NameTextField.delegate = self;
-
+    choseMenView.NameTextField.placeholder = @"选填";
     [scrollView addSubview:choseMenView];
     [choseMenView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left);

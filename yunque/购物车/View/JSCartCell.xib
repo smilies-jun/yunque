@@ -47,9 +47,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="这是一款商品这是一款商品这是一款商品" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZQ-n5-mge">
+                        <rect key="frame" x="133" y="39" width="175" height="22"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="GoodsDetailLabel" destination="RZQ-n5-mge" id="ZIw-KA-Rgg"/>
                 <outlet property="GoodsPricesLabel" destination="GZX-zq-bFj" id="3um-tF-xuZ"/>
                 <outlet property="goodsImageView" destination="bnE-rZ-djZ" id="7tZ-XA-P5G"/>
                 <outlet property="goodsNameLabel" destination="WbF-ep-uq3" id="4am-IB-bae"/>

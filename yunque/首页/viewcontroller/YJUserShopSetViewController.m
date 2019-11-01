@@ -76,7 +76,6 @@
     NSString *url = [NSString stringWithFormat:@"%@/essentialData/classManagment/findClass",BASE_URL];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:nil usingBlock:^(NSDictionary *result, NSError *error) {
         // 三级列表
-        
         for (int i = 0; i < [[result objectForKey:@"data"] count]+1; i++) {
             ItemModel *model;
             if(i == 0) {
@@ -131,7 +130,7 @@
 }
 - (void)SetUi{
     shopListTableview = [[UITableView alloc]init];
-    shopListTableview.frame = CGRectMake(0, StatusBarHeight+64+44, SCREEN_WIDTH, SCREEN_HEIGHT-StatusBarHeight-64-44-40);
+    shopListTableview.frame = CGRectMake(0, StatusBarHeight+64+44, SCREEN_WIDTH, SCREEN_HEIGHT-StatusBarHeight-64-44);
     shopListTableview.delegate = self;
     shopListTableview.dataSource = self;
     [self.view addSubview:shopListTableview];
@@ -166,7 +165,7 @@
        
 
  
-        [self getNetworkData:YES];
+      //  [self getNetworkData:YES];
     };
     self.menuScreeningView = [[DropMenuBar alloc] initWithAction:@[one,two,three]];
     self.menuScreeningView.delegate = self;
@@ -212,35 +211,32 @@
                 @"categoryIds":categoryIds
                 };
     }else{
-        if (keyWordStr.length) {
-            dic = @{@"page":[NSNumber numberWithInteger:page],
-                    @"pageSize":[NSNumber numberWithInteger:10],
-                    @"createTimeDesc":[NSNumber numberWithInteger:createTimeDesc],
-                    @"sellingPriceDesc":[NSNumber numberWithInteger:sellingPriceDesc],
-                    @"keyWord":keyWordStr
-                    };
-        }else{
             dic = @{@"page":[NSNumber numberWithInteger:page],
                     @"pageSize":[NSNumber numberWithInteger:10],
                     @"createTimeDesc":[NSNumber numberWithInteger:createTimeDesc],
                     @"sellingPriceDesc":[NSNumber numberWithInteger:sellingPriceDesc]
-                    };
-        }
+      
+            };
     }
+    NSLog(@"dic == %@",dic);
+    NSLog(@"data == %lu",(unsigned long)DataArray.count);
     [[DateSource sharedInstance]requestHomeWithParameters:dic withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         if ([[result objectForKey:@"code"]integerValue] == 200) {
+         
             NSDictionary *dic = [result objectForKey:@"data"];
             for (NSDictionary *mydic in [dic objectForKey:@"content"]) {
                 YJHotShopModel *model = [[YJHotShopModel alloc]init];
                 model.dataDictionary = mydic;
                 [self->DataArray addObject:model];
             }
-            if ([[dic objectForKey:@"content"] count]) {
-                [self->shopListTableview endFooterRefresh];;
-               
-            }else{
-                [self->shopListTableview endFooterNoMoreData];
-            }
+//            if ([[dic objectForKey:@"content"] count]) {
+//                [self->shopListTableview endFooterRefresh];;
+//
+//            }else{
+//                [self->shopListTableview endFooterNoMoreData];
+//            }
+            NSLog(@"data == %lu",(unsigned long)DataArray.count);
+
              [self->shopListTableview reloadData];
         }else{
             [AnimationView showString:[result objectForKey:@"errmsg"]];
@@ -262,7 +258,7 @@
         
         
     }
-    [self getNetworkData:YES];
+  //  [self getNetworkData:YES];
 
     //    if ([action.title isEqualToString:@"one"]) {
     //        // 模拟每次点击时重新获取最新数据   网络请求返回数据

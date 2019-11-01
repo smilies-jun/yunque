@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString *nickName;
 
 @property(nonatomic,strong)NSString *name;
-
+@property(nonatomic,strong)NSString *actualName;
 @property(nonatomic,strong)NSString *userId;
 
 @property(nonatomic,strong)NSString *lastloginDateStr;

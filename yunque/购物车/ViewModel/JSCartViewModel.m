@@ -73,6 +73,9 @@
             cartModel.p_price      = [[[_DataArray objectAtIndex:x]objectForKey:@"price"]floatValue];
             cartModel.p_name       = [[_DataArray objectAtIndex:x]objectForKey:@"sellingPoint"];
             cartModel.p_stock      = 22;
+           // NSLog(@"_da == %@",_DataArray);
+            //NSLog(@"ds = %@",[[[[_DataArray objectAtIndex:x]objectForKey:@"productSkuDetailList"]objectAtIndex:0]objectForKey:@"skuNames"]);
+            cartModel.skuName = [[[[_DataArray objectAtIndex:x]objectForKey:@"productSkuDetailList"]objectAtIndex:0]objectForKey:@"skuNames"];
             cartModel.p_imageUrl   = [[_DataArray objectAtIndex:x]objectForKey:@"productImg"];
             cartModel.p_quantity   = [[[_DataArray objectAtIndex:x]objectForKey:@"number"]integerValue];
             [goodsArray addObject:cartModel];

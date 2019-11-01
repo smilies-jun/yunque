@@ -586,7 +586,7 @@
                             if (otherPayType > 0) {
                                 NSDictionary *dic = @{@"agreeAgreement":[NSNumber numberWithInteger:1],
                                                       @"realName":bankCardView.NameTextField.text,
-                                                      @"identityNumber":[NSNumber numberWithInteger:[bankNameView.NameTextField.text integerValue]],
+                                                      @"identityNumber":bankNameView.NameTextField.text,
                                                       @"shopName":_shopname,
                                                       @"shopShortName":choseShopSortShopView.NameTextField.text,
                                                       @"province":_defualtProvince,
@@ -598,7 +598,8 @@
                                                       @"brandIds":[NSNumber numberWithInteger:brandIds]};
                                 
                                 
-                                
+                                NSLog(@"dic === %@",dic);
+
                                 NSString *url = [NSString stringWithFormat:@"%@/shop/shopPersonal",BASE_URL];
                                 [[DateSource sharedInstance]requestHomeWithParameters:(NSMutableDictionary *)dic withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
                                     if ([[result objectForKey:@"code"]integerValue] == 200) {

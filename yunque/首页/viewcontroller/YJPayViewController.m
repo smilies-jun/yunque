@@ -34,7 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.TopView.hidden = NO;
-    self.TopTitleLabel.text = @"支付定金";
+    self.TopTitleLabel.text = @"支付金额";
     indexRow = 0;
     indexSectionRow = 4;
     indexSection = 1;
@@ -74,7 +74,7 @@
 }
 - (void)sureClick{
     if ([PayMoneyStr isEqualToString:@"0"]) {
-         [AnimationView showString:@"定金不能为0"];
+         [AnimationView showString:@"金额不能为0"];
        
     }else{
         [self postClick];
@@ -220,6 +220,7 @@
         }else{
             cell.AdressTextField.text = @"100";
         }
+        cell.AdressTextField.enabled = YES;
         cell.AdressTextField.keyboardType = UIKeyboardTypeNumberPad;
         cell.AdressTextField.delegate = self;
         cell.AdressTextField.tag = 100;
@@ -292,6 +293,9 @@
     
     
     
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    return NO;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField.tag == 100) {

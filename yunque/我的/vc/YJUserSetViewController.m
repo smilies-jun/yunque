@@ -151,6 +151,7 @@
         [self.navigationController pushViewController:vc animated:NO];
     }else{
         [self clearAPP];
+         [AnimationView showString:@"清理成功"];
     }
    
 }

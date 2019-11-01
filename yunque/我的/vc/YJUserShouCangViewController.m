@@ -141,13 +141,16 @@
     shopListTableview.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-StatusBarHeight-64);
     shopListTableview.delegate = self;
     shopListTableview.dataSource = self;
+    shopListTableview.tableFooterView = [UIView new];
     [self.view addSubview:shopListTableview];
+    
     __weak __typeof(self) weakSelf = self;
     [shopListTableview addHeaderWithHeaderWithBeginRefresh:YES animation:YES refreshBlock:^(NSInteger pageIndex) {
         NSLog(@"pageIndex:%zd",pageIndex);
         //weakSelf.page = pageIndex;
         [weakSelf getNetworkData:YES];
     }];
+    
     
     [shopListTableview addFooterWithWithHeaderWithAutomaticallyRefresh:NO loadMoreBlock:^(NSInteger pageIndex) {
         NSLog(@"pageIndex:%zd",pageIndex);

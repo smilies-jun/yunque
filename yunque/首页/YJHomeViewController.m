@@ -379,7 +379,13 @@
        [allBtn addTarget:self action:@selector(shareMyShop) forControlEvents:UIControlEventTouchUpInside];
        [_ShopTopView addSubview:allBtn];
        [allBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
-           make.left.mas_equalTo(_ShopTopView.mas_left).offset(25);
+           if (iPhoneXAndXS) {
+               make.left.mas_equalTo(_ShopTopView.mas_left).offset(15);
+
+           }else{
+               make.left.mas_equalTo(_ShopTopView.mas_left).offset(25);
+
+           }
            make.top.mas_equalTo(dor3Label.mas_bottom).offset(20);
              if (iPhoneXAndXS) {
                 make.width.mas_equalTo(218/2);

@@ -239,7 +239,7 @@
                 
             }
             self->totalStr = [NSString stringWithFormat:@"%@",[[[result objectForKey:@"data"]objectForKey:@"total"]objectAtIndex:0]];
-            self->xsLabel.text = [NSString stringWithFormat:@"￥%@元",totalStr];
+            self->xsLabel.text = [NSString stringWithFormat:@"￥%@元",self->totalStr];
 
             [self.barChart strokePath];
             [self.waveChart strokePath];
@@ -258,7 +258,7 @@
     self.barChart.topicLabel.text = @"客户量";
     self.barChart.topicLabel.frame = CGRectMake(40, 0, 200, 20);
     self.barChart.topicLabel.textAlignment = NSTextAlignmentLeft;
-    self.barChart.unit = @"万";
+    self.barChart.unit = @"个";
     //    self.barChart.isAnimated = NO;
     //    self.barChart.isResetAxisLineMinValue = YES;
     self.barChart.isResetAxisLineMaxValue = YES;

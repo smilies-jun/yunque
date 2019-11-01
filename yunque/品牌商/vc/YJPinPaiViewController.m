@@ -69,7 +69,14 @@
        layout.headerReferenceSize = CGSizeMake(0, 0);
        layout.footerReferenceSize = CGSizeMake(0, 0);
        //创建容器视图
-       UICollectionView *collectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, StatusBarHeight+40, SCREEN_WIDTH,  100) collectionViewLayout:layout];
+    UICollectionView *collectionView;
+    if (iPhoneXAndXS) {
+        collectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, 20+40, SCREEN_WIDTH,  100) collectionViewLayout:layout];
+
+    }else{
+        collectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, StatusBarHeight+40, SCREEN_WIDTH,  100) collectionViewLayout:layout];
+
+    }
        collectionView.delegate=self;//设置代理
        collectionView.dataSource=self;//设置数据源
        collectionView.backgroundColor = colorWithRGB(0.97, 0.97, 0.97);//设置背景，默认为黑色

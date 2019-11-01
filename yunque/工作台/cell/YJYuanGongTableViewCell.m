@@ -84,7 +84,7 @@
 - (void)setModel:(YJKeHuModel *)model{
     if (model != _model) {
         _model = model;
-        _KeHuNameLabel.text = model.name;
+        _KeHuNameLabel.text = model.actualName;
         _KeHuNumberLabel.text = model.phone;
         if ([[[model.roleList objectAtIndex:0]objectForKey:@"roleId"] integerValue] == 5) {
             _UserNameLabel.text = @"导购";

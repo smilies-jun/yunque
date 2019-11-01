@@ -136,7 +136,7 @@
         if (shopModel.nickName.length) {
             _UserNameLabel.text = shopModel.nickName;
         }else{
-            _UserNameLabel.text  = @"迈克";
+            _UserNameLabel.text  = @"云鹊";
         }
         if (shopModel.phoneNumber.length) {
             _UserPhoneLabel.text = shopModel.phoneNumber;
@@ -145,8 +145,8 @@
         }
         
         _ShopUserLabel.text = shopModel.shoppingGuide;
-        if (shopModel.price) {
-            _ShopMoneyLabel.text = shopModel.price;
+        if ([shopModel.price integerValue]) {
+            _ShopMoneyLabel.text =   [NSString stringWithFormat:@"%@",shopModel.price] ;
 
         }else{
             _ShopMoneyLabel.text =@"正在评估";
@@ -231,11 +231,13 @@
     
 }
 + (CGFloat)whc_CellHeightForIndexPath:(NSIndexPath *)indexPath shopModel:(YJHotShopModel *)model{
+    
+    NSLog(@"model == %@",model.doorHeadStyle);
     if (model.style.length) {
         return 254;
     }else if (model.doorHeadStyle.length){
         return 254;
-    }else if (model.doorHeadStyle.length){
+    }else if (model.doorColumnStyle.length){
         return 254;
     }else{
         return 254-109;

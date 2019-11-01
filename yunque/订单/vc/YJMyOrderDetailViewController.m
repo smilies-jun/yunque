@@ -61,7 +61,6 @@
         self->dic = [result objectForKey:@"data"];
         if ([[result objectForKey:@"code"]integerValue] == 200) {
             NSDictionary *dic = [result objectForKey:@"data"];
-          //  NSLog(@"re  == =%@",result);
             for (NSDictionary *mydic in [dic objectForKey:@"orderDetailVOS"]) {
                 YJOrderModel *model = [[YJOrderModel alloc]init];
                 model.dataDictionary = mydic;
@@ -165,7 +164,6 @@
         url = [NSString stringWithFormat:@"%@/app/order/closeOrder",BASE_URL];
 
     }
-    NSLog(@"url = %@",url);
     [[DateSource sharedInstance]requestHomeWithParameters:(NSMutableDictionary *)mydic withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         //NSLog(@"re === %@",result);
         if ([[result objectForKey:@"code"]integerValue] == 200) {

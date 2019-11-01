@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString *categoryPrice;
 
 @property(nonatomic,strong)NSString *number;
-
+@property(nonatomic,strong)NSString *productPriceUnit;
 @property(nonatomic,strong)NSString *orderImgUrl;
 
 @property(nonatomic,strong)NSString *orderProductPayPrice;

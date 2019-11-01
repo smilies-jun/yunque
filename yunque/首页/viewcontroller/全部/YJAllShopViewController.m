@@ -97,7 +97,12 @@
 //    [self addChildViewController:yi];
     
     // 创建对应的DNSPageView，并设置它的frame
-    pageView = [[DNSPageView alloc] initWithFrame:CGRectMake(0, kGHSafeAreaTopHeight+20, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:style titles:titles childViewControllers:self.childViewControllers startIndex:0];
+    if (iPhoneXAndXS) {
+          pageView = [[DNSPageView alloc] initWithFrame:CGRectMake(0, 64+20+20, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:style titles:titles childViewControllers:self.childViewControllers startIndex:0];
+    }else{
+          pageView = [[DNSPageView alloc] initWithFrame:CGRectMake(0, 64+20, SCREEN_WIDTH, SCREEN_HEIGHT- 64) style:style titles:titles childViewControllers:self.childViewControllers startIndex:0];
+    }
+  
     [self.view addSubview:pageView];
     allShopTableview = [[UITableView alloc]init];
     allShopTableview.delegate = self;
@@ -106,7 +111,13 @@
    // NSIndexPath *selectindex = [NSIndexPath indexPathForRow:0 inSection:0];
    // [allShopTableview   selectRowAtIndexPath:selectindex animated:NO scrollPosition:UITableViewScrollPositionNone];
     allShopTableview.tableFooterView = [UIView new];
-    allShopTableview.frame = CGRectMake(0, StatusBarHeight+64+44, 80, SCREEN_HEIGHT-StatusBarHeight - 64-44);
+    if (iPhoneXAndXS) {
+        allShopTableview.frame = CGRectMake(0, StatusBarHeight+64+44, 80, SCREEN_HEIGHT-StatusBarHeight - 64-44);
+
+    }else{
+        allShopTableview.frame = CGRectMake(0, StatusBarHeight+64+44, 80, SCREEN_HEIGHT-StatusBarHeight - 64-44);
+
+    }
     [self.view addSubview:allShopTableview];
 }
 

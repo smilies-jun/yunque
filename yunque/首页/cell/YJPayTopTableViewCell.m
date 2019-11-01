@@ -23,6 +23,7 @@
 - (void)configUI:(NSIndexPath *)indexPath{
     _NameLabel = [[UILabel alloc]init];
     _NameLabel.text = @"点击修改点击金额";
+    _NameLabel.hidden = YES;
     _NameLabel.font = [UIFont systemFontOfSize:12];
     _NameLabel.textAlignment = NSTextAlignmentCenter;
     _NameLabel.textColor = colorWithRGB(0.56, 0.57, 0.60);

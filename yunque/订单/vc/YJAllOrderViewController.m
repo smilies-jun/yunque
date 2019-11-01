@@ -50,8 +50,7 @@
         //weakSelf.page = pageIndex;
         [weakSelf getNetworkData:NO];
     }];
-    
-    [self getNetworkData:YES];
+   
 }
 - (void)loadoneNew{
     [self getNetworkData:YES];
@@ -267,7 +266,13 @@
     
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+  [self getNetworkData:YES];
 
+
+    
+}
 /*
  #pragma mark - Navigation
  

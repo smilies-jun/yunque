@@ -131,9 +131,9 @@
         _model = model;
         [_ShopImageView sd_setImageWithURL:[NSURL URLWithString:model.orderImgUrl] placeholderImage:[UIImage imageNamed:@"imageDefault"]];
         _ShopNameLabel.text = model.orderProductTitle;
-        _ShopTypeLabel.text = [NSString stringWithFormat:@"%ld",(long)[model.orderTotalAmount integerValue]];
+       // _ShopTypeLabel.text = [NSString stringWithFormat:@"%ld",(long)[model.orderTotalAmount integerValue]];
         _ShopNumberLabel.text = [NSString stringWithFormat:@"%ld",(long)[model.number integerValue]];
-        _ShopMoneyLabel.text = [NSString stringWithFormat:@"%ld",(long)[model.orderProductPayPrice integerValue]];
+        _ShopMoneyLabel.text = [NSString stringWithFormat:@"%ld",(long)[model.productPriceUnit integerValue]];
         
     }
 }

@@ -53,6 +53,7 @@
         NSString *url = [[result objectForKey:@"data"]objectForKey:@"qrCode"];
         self->codeStr = [[result objectForKey:@"data"]objectForKey:@"suborderSn"];
         self->codeImage =   [self createQRCodeWithUrl:url];
+        NSLog(@"re == %@",result);
         [self initUI];
     }];
     

@@ -62,7 +62,7 @@
     choseHeightView = [[CustomView alloc]init];
     choseHeightView.NameLabel.text = @"骨架";
     choseHeightView.NameTextField.delegate = self;
-
+    choseHeightView.NameTextField.placeholder = @"选填";
     [scrollView addSubview:choseHeightView];
     [choseHeightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left);
@@ -73,7 +73,7 @@
     choseWidthiew = [[CustomView alloc]init];
     choseWidthiew.NameLabel.text = @"填充物";
     choseWidthiew.NameTextField.delegate = self;
-
+    choseWidthiew.NameTextField.placeholder = @"选填";
     [scrollView addSubview:choseWidthiew];
     [choseWidthiew mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left);

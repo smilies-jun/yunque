@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel        *goodsNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel        *GoodsPricesLabel;
 @property (weak, nonatomic) IBOutlet UIImageView    *goodsImageView;
+@property (weak, nonatomic) IBOutlet UILabel *GoodsDetailLabel;
 
 @end
 
@@ -34,6 +35,7 @@
     self.nummberCount.totalNum           = model.p_stock;
     self.nummberCount.currentCountNumber = model.p_quantity;
     self.selectShopGoodsButton.selected  = model.isSelect;
+    self.GoodsDetailLabel.text = model.skuName;
     [self.goodsImageView sd_setImageWithURL:[NSURL URLWithString:model.p_imageUrl] placeholderImage:[UIImage imageNamed:@"imageDefault"]];
 //    [self.goodsImageView ]
 }

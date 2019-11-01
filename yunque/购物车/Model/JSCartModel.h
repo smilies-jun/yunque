@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) NSString  *p_name;
 
+@property (nonatomic, strong) NSString  *skuName;
+
 @property (nonatomic, strong) NSString  *p_imageUrl;
 
 @property (nonatomic, assign) NSInteger p_stock;
