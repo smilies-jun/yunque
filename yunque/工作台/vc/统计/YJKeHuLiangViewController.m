@@ -219,7 +219,7 @@
 - (void)reloadAlldata{
     NSString *tokenID = NSuserUse(@"token");
     
-    NSString *ZhuUrl = [NSString stringWithFormat:@"%@/account/salesNumCylindricalView?month=12&status=1&type=1",BASE_URL];
+    NSString *ZhuUrl = [NSString stringWithFormat:@"%@/account/salesNumCylindricalView?month=6&status=1&type=1",BASE_URL];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:ZhuUrl withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         if ([[result objectForKey:@"code"]integerValue] == 200) {
             for (int i = 0 ; i< [[[result objectForKey:@"data"]objectForKey:@"data"] count] ; i++) {

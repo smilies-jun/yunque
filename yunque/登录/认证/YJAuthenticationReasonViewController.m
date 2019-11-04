@@ -137,7 +137,7 @@
                                   @"type":[NSNumber numberWithInteger:0],
                                   @"state":[NSNumber numberWithInteger:0]
                                   };
-            
+            NSLog(@"dic == %@",dic);
             NSString *url = [NSString stringWithFormat:@"%@/shop/shopPersonal",BASE_URL];
             [[DateSource sharedInstance]requestHomeWithParameters:(NSMutableDictionary *)dic withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
                 if ([[result objectForKey:@"code"]integerValue] == 200) {
