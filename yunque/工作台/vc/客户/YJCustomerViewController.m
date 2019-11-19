@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.TopView.hidden = NO;
-    self.TopTitleLabel.text = @"客户";
+    self.TopTitleLabel.text = @"收货人信息";
     self.view.backgroundColor = colorWithRGB(0.83, 0.83, 0.83);
     [self.BackButton addTarget:self action:@selector(ShopListBackClick) forControlEvents:UIControlEventTouchUpInside];
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];

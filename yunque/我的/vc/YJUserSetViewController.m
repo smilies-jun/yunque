@@ -86,7 +86,7 @@
 //设置行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 4;
+    return 3;
     
 }
 
@@ -147,7 +147,7 @@
         [self.navigationController pushViewController:vc animated:NO];
     }else if (indexPath.row == 3){
         YJProViewController *vc = [[YJProViewController alloc]init];
-        vc.WebStr = @"http://h5.yzyunque.com/";
+        vc.WebStr = @"http://www.yzyunque.com/join.html";
         [self.navigationController pushViewController:vc animated:NO];
     }else{
         [self clearAPP];

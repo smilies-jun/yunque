@@ -79,21 +79,17 @@
         make.width.mas_equalTo(180);
         make.height.mas_equalTo(30);
     }];
-//    _ShopTagFirstLabel = [[UILabel alloc]init];
-//    _ShopTagFirstLabel.text = @"新品";
-//    _ShopTagFirstLabel.layer.borderColor = [UIColor colorWithRed:236.0f/255.0f green:235.0f/255.0f blue:240.0f/255.0f alpha:1].CGColor;//颜色
-//    _ShopTagFirstLabel.layer.borderWidth = 1.0f;//设置边框粗细
-//    _ShopTagFirstLabel.layer.cornerRadius = 5;
-//    _ShopTagFirstLabel.layer.masksToBounds = YES;
-//    _ShopTagFirstLabel.textAlignment = NSTextAlignmentCenter;
-//    _ShopTagFirstLabel.font = [UIFont systemFontOfSize:17];
-//    [self addSubview:_ShopTagFirstLabel];
-//    [_ShopTagFirstLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self->_ShopImageView.mas_right).offset(20);
-//        make.bottom.mas_equalTo(self->_ShopMoneyLabel.mas_top).offset(-10);
-//        make.width.mas_equalTo(40);
-//        make.height.mas_equalTo(30);
-//    }];
+    _ShopTagFirstLabel = [[UILabel alloc]init];
+    _ShopTagFirstLabel.text = @"物流状态：";
+    _ShopTagFirstLabel.textAlignment = NSTextAlignmentLeft;
+    _ShopTagFirstLabel.font = [UIFont systemFontOfSize:12];
+    [self addSubview:_ShopTagFirstLabel];
+    [_ShopTagFirstLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self->_ShopImageView.mas_right).offset(20);
+        make.top.mas_equalTo(self->_ShopNumberLabel.mas_bottom);
+        make.width.mas_equalTo(SCREEN_WIDTH-170);
+        make.height.mas_equalTo(20);
+    }];
 //    _ShopTagSecondLabel = [[UILabel alloc]init];
 //    _ShopTagSecondLabel.text = @"新品";
 //    _ShopTagSecondLabel.layer.borderColor = [UIColor colorWithRed:236.0f/255.0f green:235.0f/255.0f blue:240.0f/255.0f alpha:1].CGColor;//颜色
@@ -133,7 +129,21 @@
         _ShopNameLabel.text = model.orderProductTitle;
        // _ShopTypeLabel.text = [NSString stringWithFormat:@"%ld",(long)[model.orderTotalAmount integerValue]];
         _ShopNumberLabel.text = [NSString stringWithFormat:@"%ld",(long)[model.number integerValue]];
-        _ShopMoneyLabel.text = [NSString stringWithFormat:@"%ld",(long)[model.productPriceUnit integerValue]];
+        _ShopMoneyLabel.text = [NSString stringWithFormat:@"%@",model.productPriceUnit ];
+        switch ([model.orderDetailStatus intValue]) {
+            case 105:
+                _ShopTagFirstLabel.text = @"物流状态：已发货";
+                break;
+            case 106:
+                _ShopTagFirstLabel.text = @"物流状态：发货失败";
+                break;
+            case 107:
+               _ShopTagFirstLabel.text = @"物流状态：已到货";
+                break;
+            default:
+                 _ShopTagFirstLabel.text = @"物流状态：暂无";
+                break;
+        }
         
     }
 }

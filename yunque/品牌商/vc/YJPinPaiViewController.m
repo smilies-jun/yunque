@@ -179,7 +179,7 @@
     }
    
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
-        // NSLog(@"re === %@",result);
+        //NSLog(@"re === %@",result);
         if ([[result objectForKey:@"code"]integerValue] == 200) {
             NSDictionary *dic = [result objectForKey:@"data"];
             for (NSDictionary *mydic in [dic objectForKey:@"content"]) {
@@ -188,12 +188,13 @@
                 model.dataDictionary = mydic;
                 [self->_listArray addObject:model];
             }
-            if ([[dic objectForKey:@"content"] count]) {
-                [self->_ShopTableView    endFooterRefresh];;
-                [self->_ShopTableView reloadData];
-            }else{
-                [self->_ShopTableView endFooterNoMoreData];
-            }
+//            if ([[dic objectForKey:@"content"] count]) {
+//                [self->_ShopTableView    endFooterRefresh];;
+//                [self->_ShopTableView reloadData];
+//            }else{
+//                [self->_ShopTableView endFooterNoMoreData];
+//            }
+            [self->_ShopTableView reloadData];
 
         }else{
             [AnimationView showString:[result objectForKey:@"errmsg"]];

@@ -29,12 +29,13 @@
     self.TopView.hidden = YES;
     dataArray = [[NSArray alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification2:) name:@"door1" object:nil];
-    [self reoadDate:@"2"];
+    [self reoadDate:@"50"];
     [self SetUI];
 }
 - (void)reoadDate:(NSString *)cataIDStr{
     NSString *url = [NSString stringWithFormat:@"%@/essentialData/classManagment/findClass?categoryId=%@",BASE_URL,cataIDStr];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:nil usingBlock:^(NSDictionary *result, NSError *error) {
+        self->dataArray = nil;
         self->dataArray = [result objectForKey:@"data"];
         [self->_collectionView reloadData];
     }];
@@ -95,6 +96,7 @@
     cell.contentView.backgroundColor=[UIColor whiteColor];
     NSDictionary *dic = [dataArray objectAtIndex:indexPath.row];
     NSString *urlStr = [dic objectForKey:@"categoryImage"];
+    NSLog(@"url == %@",urlStr);
     [cell.shopImageView  sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"imageDefault"]];
     cell.textLabel.text = [dic objectForKey:@"categoryName"];
     return cell;

@@ -134,7 +134,7 @@
     if ([buyIdStr integerValue]) {
         [self payPostClick];
     }else{
-        [AnimationView showString:@"请选择客户"];
+        [AnimationView showString:@"请选择收货人"];
     }
 }
 - (void)ShopListBackClick{
@@ -198,7 +198,7 @@
             [cell configUI:indexPath];
         }
         
-        cell.NameLabel.text= @"选择客户以及地址";
+        cell.NameLabel.text= @"选择收货人以及地址";
         cell.AdressLabel.text = @"";
         
         

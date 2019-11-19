@@ -121,7 +121,7 @@
 }
 - (void)SetUi{
     shopListTableview = [[UITableView alloc]init];
-    shopListTableview.frame = CGRectMake(0, StatusBarHeight+64+44, SCREEN_WIDTH, SCREEN_HEIGHT-StatusBarHeight-64-44);
+    shopListTableview.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-StatusBarHeight-64);
     shopListTableview.delegate = self;
     shopListTableview.dataSource = self;
     [self.view addSubview:shopListTableview];
@@ -161,6 +161,7 @@
     };
     self.menuScreeningView = [[DropMenuBar alloc] initWithAction:@[one,two,four,three]];
     self.menuScreeningView.delegate = self;
+    self.menuScreeningView.hidden = YES;
     self.menuScreeningView.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, 40);
     self.menuScreeningView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.menuScreeningView];
@@ -498,6 +499,8 @@
      YJHotShopModel *model = [dataArray objectAtIndex:indexPath.row];
     YJShowShopDeatilShopingViewController *vc = [[YJShowShopDeatilShopingViewController alloc]init];
     vc.WebStr = [NSString stringWithFormat:@"http://h5.yzyunque.com/?token=%@&productid=%@&userid=%@",tokenID,model.commodityId,userID];
+    //vc.WebStr = [NSString stringWithFormat:@"http://htest.yzyunque.com/?token=%@&productid=%@&userid=%@",tokenID,model.commodityId,userID];
+
     
     vc.ShopIDStr = model.commodityId;
   [self.navigationController pushViewController:vc animated:NO];

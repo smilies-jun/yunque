@@ -520,7 +520,7 @@
 - (void)gesClick{
     //协议
     YJProViewController *vc = [[YJProViewController alloc]init];
-    vc.WebStr = @"http://h5.yzyunque.com/franchiseagreement.htm";
+    vc.WebStr = @"http://www.yzyunque.com/join.html";
     vc.type = @"1";
     [self.navigationController pushViewController:vc animated:NO];
     

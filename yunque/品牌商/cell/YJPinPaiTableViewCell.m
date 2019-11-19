@@ -104,11 +104,20 @@
     _model = model;
     
     [_iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.brandIcon]]];
-    _nameLable.text= model.brandName;
-    _contentLabel.text = model.productAdvanta;
-    [imageView0 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.masterImageUrls objectAtIndex:0]]] placeholderImage:[UIImage imageNamed:@"icon1.jpg"]];
-    [imageView1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.masterImageUrls objectAtIndex:1]]]placeholderImage:[UIImage imageNamed:@"icon1.jpg"]];
-    [imageView2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.masterImageUrls objectAtIndex:2]]]placeholderImage:[UIImage imageNamed:@"icon1.jpg"]];
+    _nameLable.text= model.title;
+    _contentLabel.text = model.productDes;
+    if (model.wheelImageUrls.count==3) {
+        [imageView0 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.wheelImageUrls objectAtIndex:0]]] placeholderImage:[UIImage imageNamed:@"icon1.jpg"]];
+           [imageView1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.wheelImageUrls objectAtIndex:1]]]placeholderImage:[UIImage imageNamed:@"icon1.jpg"]];
+           [imageView2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.wheelImageUrls objectAtIndex:2]]]placeholderImage:[UIImage imageNamed:@"icon1.jpg"]];
+    }else if (model.masterImageUrls.count == 2){
+        [imageView0 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.wheelImageUrls objectAtIndex:0]]] placeholderImage:[UIImage imageNamed:@"icon1.jpg"]];
+                 [imageView1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.wheelImageUrls objectAtIndex:1]]]placeholderImage:[UIImage imageNamed:@"icon1.jpg"]];
+    }else{
+        [imageView0 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[model.wheelImageUrls objectAtIndex:0]]] placeholderImage:[UIImage imageNamed:@"icon1.jpg"]];
+               
+    }
+   
 
     
 }

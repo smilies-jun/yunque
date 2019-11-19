@@ -46,13 +46,13 @@
     }];
     _orderNumberDetailLabel = [[UILabel alloc]init];
     _orderNumberDetailLabel.text = @"2019898989988899";
-    _orderNumberDetailLabel.font = [UIFont systemFontOfSize:14];
+    _orderNumberDetailLabel.font = [UIFont systemFontOfSize:13];
     _orderNumberDetailLabel.textAlignment = NSTextAlignmentRight;
     [self addSubview:_orderNumberDetailLabel];
     [_orderNumberDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.mas_right).offset(-20);
         make.top.mas_equalTo(self->_NameLabel.mas_bottom).offset(10);
-        make.width.mas_equalTo(140);
+        make.width.mas_equalTo(250);
         make.height.mas_equalTo(30);
     }];
     

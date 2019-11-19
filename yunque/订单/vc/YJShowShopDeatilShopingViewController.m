@@ -78,8 +78,8 @@
 - (void)userContentController:(WKUserContentController *)userContentController
       didReceiveScriptMessage:(WKScriptMessage *)message {
     if ([message.name isEqualToString: @"attendanceShare"]) {
-        NSLog(@"MessageBody: %@", message.body);
-        NSString *price = [NSString stringWithFormat:@"%ld",(long)[[message.body objectForKey:@"price"]integerValue] ];
+        //NSLog(@"MessageBody: %@", message.body);
+        NSString *price = [NSString stringWithFormat:@"%@",[message.body objectForKey:@"price"] ];
         productIdStr = [NSString stringWithFormat:@"%ld",(long)[[message.body objectForKey:@"productAttributesId"]integerValue] ];
         titleStr = [message.body objectForKey:@"title"];
         imageStr = [message.body objectForKey:@"imgurl"];
@@ -103,13 +103,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)showShareSdk{
+    NSLog(@"web = %@",_WebStr);
     NSArray* imageArray = @[[UIImage imageNamed:@"logo.jpg"]];
     //（注意：图片可以是UIImage对象，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-    [shareParams SSDKSetupShareParamsByText:@"迈克家的分享"
+    [shareParams SSDKSetupShareParamsByText:@"云鹊的分享"
                                      images:imageArray
-                                        url:[NSURL URLWithString:@"http://www.maikehome.cn"]
-                                      title:@"分享标题"
+                                        url:[NSURL URLWithString:[NSString stringWithFormat:@"%@?share=1",_WebStr]]
+                                      title:titleStr
                                        type:SSDKContentTypeAuto];
     [ShareSDK showShareActionSheet:nil
                        customItems:nil

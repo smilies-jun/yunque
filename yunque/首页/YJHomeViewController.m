@@ -120,17 +120,24 @@
     NSString *tokenID = NSuserUse(@"token");
      NSString *url = [NSString stringWithFormat:@"%@/banner/applist",BASE_URL];
      [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
-             NSArray *myarray = [result objectForKey:@"data"];
-          [self->imageMuArray removeAllObjects];
-          [self->urlArray removeAllObjects];
-             for (NSDictionary *mydic in myarray) {
+         if ([[result objectForKey:@"code"] integerValue]==200) {
+               NSArray *myarray = [result objectForKey:@"data"];
+                  [self->imageMuArray removeAllObjects];
+                  [self->urlArray removeAllObjects];
+                     for (NSDictionary *mydic in myarray) {
+                        
+                         
+                         [self->imageMuArray addObject:[mydic objectForKey:@"imgUrl"]];
+                         [self->urlArray addObject:[mydic objectForKey:@"url"]];
+             }
                 
-                 
-                 [self->imageMuArray addObject:[mydic objectForKey:@"imgUrl"]];
-                 [self->urlArray addObject:[mydic objectForKey:@"url"]];
-     }
-     [self refreshUserData];
-     }];
+            
+           
+         }else{
+           [AnimationView showString:[result objectForKey:@"errmsg"]];
+         }
+          [self refreshUserData];
+        }];
 }
 - (void)refreshUserData{
      [self reoadDate];
@@ -148,13 +155,15 @@
 }
 - (void)reoadDate{
     [self->cateIDArray removeAllObjects];
-     [self->titleArray removeAllObjects];
-     [self->cateIDArray2 removeAllObjects];
-     [self->titleArray2 removeAllObjects];
-     [self->cateIDArray3 removeAllObjects];
-     [self->titleArray3 removeAllObjects];
+    [self->titleArray removeAllObjects];
+    [self->cateIDArray2 removeAllObjects];
+    [self->titleArray2 removeAllObjects];
+    [self->cateIDArray3 removeAllObjects];
+    [self->titleArray3 removeAllObjects];
     [self->cateIDArray4 removeAllObjects];
-     [self->titleArray4 removeAllObjects];
+    [self->titleArray4 removeAllObjects];
+    [self->cateIDArray5 removeAllObjects];
+    [self->titleArray5 removeAllObjects];
     
     NSString *url = [NSString stringWithFormat:@"%@/essentialData/classManagment/findClass",BASE_URL];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:nil usingBlock:^(NSDictionary *result, NSError *error) {
@@ -182,13 +191,13 @@
                         [self->cateIDArray4 addObject:[[childArray objectAtIndex:j] objectForKey:@"categoryId"]];
                         [self->titleArray4 addObject:[[childArray objectAtIndex:j] objectForKey:@"categoryName"]];
                     }
+                
+                }else{
+                    for (int j =0; j < childArray.count; j++) {
+                        [self->cateIDArray5 addObject:[[childArray objectAtIndex:j] objectForKey:@"categoryId"]];
+                        [self->titleArray5 addObject:[[childArray objectAtIndex:j] objectForKey:@"categoryName"]];
+                    }
                 }
-//                }else{
-//                    for (int j =0; j < childArray.count; j++) {
-//                        [self->cateIDArray5 addObject:[[childArray objectAtIndex:j] objectForKey:@"categoryId"]];
-//                        [self->titleArray5 addObject:[[childArray objectAtIndex:j] objectForKey:@"categoryName"]];
-//                    }
-//                }
             }
          
            
@@ -205,8 +214,13 @@
     [[DateSource sharedInstance]requestHomeWithParameters:nil withUrl:UserInfourl withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         //self->userDic =[result objectForKey:@"data"];
         //[self SetUi];
-        self->shopNameStr = [[result objectForKey:@"data"]objectForKey:@"shopName"];
-        NSuserSave([[result objectForKey:@"data"]objectForKey:@"status"], @"status");
+        if ([[result objectForKey:@"code"] integerValue]==200) {
+            self->shopNameStr = [[result objectForKey:@"data"]objectForKey:@"shopName"];
+                   NSuserSave([[result objectForKey:@"data"]objectForKey:@"status"], @"status");
+        }else{
+            
+        }
+       
         [self SetUI];
     }];
 }
@@ -245,35 +259,65 @@
         _ShopTopView = [[UIView alloc]init];
         _ShopTopView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 260);
         _ShopTopView.backgroundColor = colorWithRGB(0.97, 0.97, 0.97);
-      
+        
+        UIButton *BiaoDoorBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+         [BiaoDoorBtn setBackgroundImage:[UIImage imageNamed:@"标门"] forState:UIControlStateNormal];
+        BiaoDoorBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        BiaoDoorBtn.tag = 100;
+        [BiaoDoorBtn addTarget:self action:@selector(DoorBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_ShopTopView addSubview:BiaoDoorBtn];
+        [BiaoDoorBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (iPhoneXAndXS) {
+            make.left.mas_equalTo(_ShopTopView.mas_left).offset(35);
+            }else if (iPhoneXRAndXSMAX){
+            make.left.mas_equalTo(_ShopTopView.mas_left).offset(35);
+            }else{
+            make.left.mas_equalTo(_ShopTopView.mas_left).offset(35);
+            }
+            make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
+            make.width.mas_equalTo(40);
+            make.height.mas_equalTo(40);
+            }];
+        UILabel *BiaodorLabel = [[UILabel alloc]init];
+        BiaodorLabel.text = @"标门";
+        BiaodorLabel.textAlignment = NSTextAlignmentCenter;
+        BiaodorLabel.font = [UIFont systemFontOfSize:13];
+        [_ShopTopView addSubview:BiaodorLabel];
+        [BiaodorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(BiaoDoorBtn.mas_centerX);
+            make.top.mas_equalTo(BiaoDoorBtn.mas_bottom).offset(10);
+            make.width.mas_equalTo(40);
+            make.height.mas_equalTo(20);
+        }];
        
         UIButton *DoorBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [DoorBtn setBackgroundImage:[UIImage imageNamed:@"门类"] forState:UIControlStateNormal];
         DoorBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        DoorBtn.tag = 100;
+        DoorBtn.tag = 101;
         [DoorBtn addTarget:self action:@selector(DoorBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_ShopTopView addSubview:DoorBtn];
         [DoorBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             if (iPhoneXAndXS) {
-                make.left.mas_equalTo(_ShopTopView.mas_left).offset(35);
+                make.left.mas_equalTo(BiaoDoorBtn.mas_right).offset(25);
             }else if (iPhoneXRAndXSMAX){
-                  make.left.mas_equalTo(_ShopTopView.mas_left).offset(35);
+                make.left.mas_equalTo(BiaoDoorBtn.mas_right).offset(25);
+                
             }else{
-                make.left.mas_equalTo(_ShopTopView.mas_left).offset(25);
+                make.left.mas_equalTo(BiaoDoorBtn.mas_right).offset(25);
             }
-            make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
-            make.width.mas_equalTo(60);
-            make.height.mas_equalTo(60);
+                make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
+                make.width.mas_equalTo(40);
+                make.height.mas_equalTo(40);
         }];
         UILabel * dorLabel = [[UILabel alloc]init];
-        dorLabel.text = @"门类";
+        dorLabel.text = @"非标门";
         dorLabel.textAlignment = NSTextAlignmentCenter;
         dorLabel.font = [UIFont systemFontOfSize:13];
         [_ShopTopView addSubview:dorLabel];
         [dorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(DoorBtn.mas_centerX);
             make.top.mas_equalTo(DoorBtn.mas_bottom).offset(10);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(40);
             make.height.mas_equalTo(20);
         }];
         
@@ -281,7 +325,7 @@
         UIButton *Door1Btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [Door1Btn setBackgroundImage:[UIImage imageNamed:@"锁具"] forState:UIControlStateNormal];
         Door1Btn.titleLabel.font = [UIFont systemFontOfSize:16];
-        Door1Btn.tag = 101;
+        Door1Btn.tag = 102;
         [Door1Btn addTarget:self action:@selector(DoorBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_ShopTopView addSubview:Door1Btn];
         [Door1Btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -296,8 +340,8 @@
 
               }
             make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
-            make.width.mas_equalTo(60);
-            make.height.mas_equalTo(60);
+            make.width.mas_equalTo(40);
+            make.height.mas_equalTo(40);
         }];
         UILabel * dor1Label = [[UILabel alloc]init];
         dor1Label.text = @"锁具";
@@ -307,13 +351,13 @@
         [dor1Label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(Door1Btn.mas_centerX);
             make.top.mas_equalTo(Door1Btn.mas_bottom).offset(10);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(40);
             make.height.mas_equalTo(20);
         }];
         UIButton *Door2Btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [Door2Btn setBackgroundImage:[UIImage imageNamed:@"工艺品"] forState:UIControlStateNormal];
         Door2Btn.titleLabel.font = [UIFont systemFontOfSize:16];
-        Door2Btn.tag = 102;
+        Door2Btn.tag = 103;
         [Door2Btn addTarget:self action:@selector(DoorBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_ShopTopView addSubview:Door2Btn];
         [Door2Btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -327,8 +371,8 @@
 
                        }
             make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
-            make.width.mas_equalTo(60);
-            make.height.mas_equalTo(60);
+            make.width.mas_equalTo(40);
+            make.height.mas_equalTo(40);
         }];
         UILabel * dor2Label = [[UILabel alloc]init];
         dor2Label.text = @"工艺品";
@@ -338,28 +382,28 @@
         [dor2Label mas_makeConstraints:^(MASConstraintMaker *make) {
            make.centerX.mas_equalTo(Door2Btn.mas_centerX);
             make.top.mas_equalTo(Door2Btn.mas_bottom).offset(10);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(40);
             make.height.mas_equalTo(20);
         }];
         UIButton *Door3Btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [Door3Btn setBackgroundImage:[UIImage imageNamed:@"全部分类"] forState:UIControlStateNormal];
         Door3Btn.titleLabel.font = [UIFont systemFontOfSize:16];
-        Door3Btn.tag = 103;
+        Door3Btn.tag = 104;
         [Door3Btn addTarget:self action:@selector(allShopClick) forControlEvents:UIControlEventTouchUpInside];
         [_ShopTopView addSubview:Door3Btn];
         [Door3Btn mas_makeConstraints:^(MASConstraintMaker *make) {
              if (iPhoneXAndXS) {
-                           make.left.mas_equalTo(Door2Btn.mas_right).offset(25);
+                        make.left.mas_equalTo(Door2Btn.mas_right).offset(25);
 
                        }else if (iPhoneXRAndXSMAX){
-                             make.left.mas_equalTo(Door2Btn.mas_right).offset(35);
+                        make.left.mas_equalTo(Door2Btn.mas_right).offset(35);
                        }else{
-                           make.left.mas_equalTo(Door2Btn.mas_right).offset(25);
+                        make.left.mas_equalTo(Door2Btn.mas_right).offset(25);
 
                        }
             make.top.mas_equalTo(_ShopTopView.mas_top).offset(10);
-            make.width.mas_equalTo(60);
-            make.height.mas_equalTo(60);
+            make.width.mas_equalTo(40);
+            make.height.mas_equalTo(40);
         }];
         UILabel * dor3Label = [[UILabel alloc]init];
         dor3Label.text = @"全部分类";
@@ -377,6 +421,7 @@
         UIButton *allBtn = [UIButton buttonWithType:UIButtonTypeCustom];
        [allBtn setBackgroundImage:[UIImage imageNamed:@"邀请好友卡片"] forState:UIControlStateNormal];
        [allBtn addTarget:self action:@selector(shareMyShop) forControlEvents:UIControlEventTouchUpInside];
+        allBtn.hidden = YES;
        [_ShopTopView addSubview:allBtn];
        [allBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
            if (iPhoneXAndXS) {
@@ -402,6 +447,7 @@
        }];
         UIButton *dingzhiBtn = [UIButton buttonWithType:UIButtonTypeCustom];
            [dingzhiBtn setBackgroundImage:[UIImage imageNamed:@"量身定制卡片"] forState:UIControlStateNormal];
+        dingzhiBtn.hidden = YES;
            [dingzhiBtn addTarget:self action:@selector(SetShopClick) forControlEvents:UIControlEventTouchUpInside];
            [_ShopTopView addSubview:dingzhiBtn];
            [dingzhiBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -420,7 +466,8 @@
 
            }];
         UIButton *qidaiBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-           [qidaiBtn setBackgroundImage:[UIImage imageNamed:@"敬请期待卡片"] forState:UIControlStateNormal];
+        [qidaiBtn setBackgroundImage:[UIImage imageNamed:@"敬请期待卡片"] forState:UIControlStateNormal];
+        qidaiBtn.hidden = YES;
            [qidaiBtn addTarget:self action:@selector(noMoreClick) forControlEvents:UIControlEventTouchUpInside];
            [_ShopTopView addSubview:qidaiBtn];
            [qidaiBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -445,7 +492,7 @@
        [_ShopTopView addSubview:HotLabel];
        [HotLabel mas_makeConstraints:^(MASConstraintMaker *make) {
            make.left.mas_equalTo(_ShopTopView.mas_left).offset(20);
-           make.top.mas_equalTo(allBtn.mas_bottom).offset(20);
+           make.top.mas_equalTo(dor3Label.mas_bottom).offset(20);
            make.width.mas_equalTo(160);
            make.height.mas_equalTo(20);
        }];
@@ -458,7 +505,7 @@
     
 }
 - (void)shareMyShop{
-      [AnimationView showString:@"邀请好友功能"];
+ //     [AnimationView showString:@"邀请好友功能"];
 //    NSArray* imageArray = @[[UIImage imageNamed:@"logo.jpg"]];
 //       //（注意：图片可以是UIImage对象，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
 //       NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
@@ -555,7 +602,7 @@
     if (page ==1) {
         [DataArray  removeAllObjects];
     }
-    
+    [DataArray  removeAllObjects];
     NSString *tokenID = NSuserUse(@"token");
     NSString *userID = NSuserUse(@"userId");
     NSString *hotStr = [NSString stringWithFormat:@"热销"];
@@ -627,7 +674,7 @@
 //组头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 1) {
-         return 240;
+         return 140;
     }else if (section == 0){
         return 200;
     }else{
@@ -669,6 +716,8 @@
         NSString *userID = NSuserUse(@"userId");
         YJShowShopDeatilShopingViewController *vc= [[YJShowShopDeatilShopingViewController alloc]init];
         vc.WebStr = [NSString stringWithFormat:@"http://h5.yzyunque.com/?token=%@&productid=%@&userid=%@",tokenID,Model.commodityId,userID];
+        //vc.WebStr = [NSString stringWithFormat:@"http://htest.yzyunque.com/?token=%@&productid=%@&userid=%@",tokenID,Model.commodityId,userID];
+        
         vc.ShopIDStr = Model.commodityId;
         [self.navigationController   pushViewController:vc animated:NO];
     }
@@ -696,8 +745,8 @@
     vc.cataIDArray3 = cateIDArray3;
     vc.titleArray4 = titleArray4;
     vc.cataIDArray4 = cateIDArray4;
-//    vc.titleArray5 = titleArray5;
-//    vc.cataIDArray5 = cateIDArray5;
+    vc.titleArray5 = titleArray5;
+    vc.cataIDArray5 = cateIDArray5;
     
     [self.navigationController   pushViewController:vc animated:NO];
 }
@@ -710,26 +759,26 @@
     if (btn.tag - 100 == 0) {
         vc.cataIDArray = cateIDArray;
         vc.titleArray = titleArray;
-        vc.titleStr = @"门类";
+        vc.titleStr = @"标门";
     }else if (btn.tag- 100 == 1){
         vc.cataIDArray = cateIDArray2;
         vc.titleArray = titleArray2;
-        vc.titleStr = @"锁具";
+        vc.titleStr = @"非标门";
     }else if (btn.tag- 100 == 2){
         vc.cataIDArray = cateIDArray3;
         vc.titleArray = titleArray3;
-        vc.titleStr = @"工艺品";
+        vc.titleStr = @"锁具";
     }else if (btn.tag- 100 == 3){
         vc.cataIDArray = cateIDArray4;
         vc.titleArray = titleArray4;
-        vc.titleStr = @"其他";
+        vc.titleStr = @"工艺品";
         
+    
+    }else{
+        vc.cataIDArray = cateIDArray5;
+        vc.titleArray = titleArray5;
+        vc.titleStr = @"其他";
     }
-//    }else{
-//        vc.cataIDArray = cateIDArray5;
-//        vc.titleArray = titleArray5;
-//        vc.titleStr = @"工艺品";
-//    }
     [self.navigationController pushViewController:vc animated:NO];
    
 }
@@ -751,6 +800,7 @@
     [[DateSource sharedInstance]requestHomeWithParameters:nil withUrl:UserInfourl withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         //self->userDic =[result objectForKey:@"data"];
         //[self SetUi];
+     //   NSLog(@"re -= %@",result);
         if ([[result objectForKey:@"code"] integerValue]==200) {
             self->shopNameStr = [[result objectForKey:@"data"]objectForKey:@"shopName"];
                  //  NSuserSave([[result objectForKey:@"data"]objectForKey:@"shopName"], @"shopName");
@@ -895,11 +945,11 @@
     //    [self afn1];
 }
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    YJShowShopDeatilShopingViewController *vc= [[YJShowShopDeatilShopingViewController alloc]init];
-    vc.WebStr = [NSString stringWithFormat:@"%@",[urlArray objectAtIndex:index]];
-    vc.TitleStr = @"活动页面";
-    vc.TypeStr = @"1";
-    [self.navigationController   pushViewController:vc animated:NO];
+//    YJShowShopDeatilShopingViewController *vc= [[YJShowShopDeatilShopingViewController alloc]init];
+//    vc.WebStr = [NSString stringWithFormat:@"%@",[urlArray objectAtIndex:index]];
+//    vc.TitleStr = @"活动页面";
+//    vc.TypeStr = @"1";
+//    [self.navigationController   pushViewController:vc animated:NO];
 }
 
 @end

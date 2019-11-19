@@ -106,8 +106,8 @@
         make.height.mas_equalTo(60);
     }];
     choseAdressView = [[CustomChooseView alloc]init];
-    choseAdressView.NameLabel.text = @"客户地址";
-    choseAdressView.ChooseLabel.text = @"请选择客户地址";
+    choseAdressView.NameLabel.text = @"v收货人地址";
+    choseAdressView.ChooseLabel.text = @"请选择收货人地址";
     choseAdressView.userInteractionEnabled = YES;
     UITapGestureRecognizer  *choseTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(choseAdressClick)];
     [choseAdressView addGestureRecognizer:choseTap];

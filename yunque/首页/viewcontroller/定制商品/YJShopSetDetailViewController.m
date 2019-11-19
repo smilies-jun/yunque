@@ -82,7 +82,7 @@
     }];
     choseNameView  = [[CustomChooseView alloc]init];
     choseNameView.NameLabel.text = @"客户";
-    choseNameView.ChooseLabel.text = @"请选择客户";
+    choseNameView.ChooseLabel.text = @"请选择收货人";
     choseNameView.ChooseLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *kehuTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(kehuClick)];
     [choseNameView.ChooseLabel addGestureRecognizer:kehuTap];
@@ -203,7 +203,7 @@
             }
             
         }else{
-            [AnimationView showString:@"请选择客户"];
+            [AnimationView showString:@"请选择收货人"];
         }
     }else{
        [AnimationView showString:@"请选择类别"];

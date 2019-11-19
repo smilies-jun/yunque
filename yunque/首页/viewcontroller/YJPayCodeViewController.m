@@ -43,17 +43,18 @@
 - (void)reoadDate{
     NSString *url;
     if ([_typeStr integerValue] == 1) {
-         url = [NSString stringWithFormat:@"%@/alipay/pre?transaction=0.01&orderId=1",BASE_URL];
+         url = [NSString stringWithFormat:@"%@/alipay/pre?transaction=%@&orderId=%@",BASE_URL,_moneyStr,_shopId];
     }else{
-        url = [NSString stringWithFormat:@"%@/pay/pre?transaction=0.01&orderId=1",BASE_URL];
+        url = [NSString stringWithFormat:@"%@/pay/pre?transaction=%@&orderId=%@",BASE_URL,_moneyStr,_shopId];
     }
    
-    //NSLog(@"url = %@",url);
+    NSLog(@"url = %@",url);
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:nil usingBlock:^(NSDictionary *result, NSError *error) {
         NSString *url = [[result objectForKey:@"data"]objectForKey:@"qrCode"];
         self->codeStr = [[result objectForKey:@"data"]objectForKey:@"suborderSn"];
         self->codeImage =   [self createQRCodeWithUrl:url];
         NSLog(@"re == %@",result);
+        NSLog(@"error === %@",[result objectForKey:@"errmsg"]);
         [self initUI];
     }];
     
@@ -159,11 +160,16 @@
     NSString *url;
     url = [NSString stringWithFormat:@"%@/alipay/verification?suborderSn=%@",BASE_URL,codeStr];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:nil usingBlock:^(NSDictionary *result, NSError *error) {
+        NSLog(@"re == %@",result);
+        NSLog(@"ur l= == %@",url);
+             NSLog(@"error === %@",[result objectForKey:@"errmsg"]);
         if ([[result objectForKey:@"code"]integerValue] == 200) {
           //  [AnimationView showString:@"支付成功"];
           //  [self.navigationController popToRootViewControllerAnimated:NO];
             YJPayResultViewController   *vc = [[YJPayResultViewController alloc]init];
             [self.navigationController pushViewController:vc animated:NO];
+        }else if ([[result objectForKey:@"code"]integerValue] == 50957){
+             [AnimationView showString:@"请稍后再试"];
         }else{
             [AnimationView showString:[result objectForKey:@"errmsg"]];
         }

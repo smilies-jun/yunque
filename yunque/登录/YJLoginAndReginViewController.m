@@ -379,7 +379,7 @@
 }
 - (void)gesClick{
     YJProViewController *vc = [[YJProViewController alloc]init];
-    vc.WebStr = @"http://h5.yzyunque.com/registrationagreement.htm";
+    vc.WebStr = @"http://www.yzyunque.com/register.html";
     [self.navigationController pushViewController:vc animated:NO];
 }
 - (void)clicked:(UIButton *)btn{

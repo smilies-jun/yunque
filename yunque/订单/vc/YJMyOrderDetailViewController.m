@@ -86,7 +86,13 @@
 }
 - (void)SetUi{
     shopListTableview = [[UITableView alloc]init];
-    shopListTableview.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-StatusBarHeight-64 -70);
+    if ([[dic objectForKey:@"orderStatus"]integerValue] == 101) {
+        shopListTableview.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-StatusBarHeight-64 -70);
+
+    }else{
+        shopListTableview.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-StatusBarHeight-64);
+
+    }
     shopListTableview.delegate = self;
     shopListTableview.dataSource = self;
     [self.view addSubview:shopListTableview];
@@ -103,7 +109,7 @@
     UIButton * payBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [payBtn addTarget:self action:@selector(sureClick) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:payBtn];
-    [payBtn setTitle:@"继续收款" forState:UIControlStateNormal];
+    [payBtn setTitle:@"待支付" forState:UIControlStateNormal];
     //[payBtn setTintColor:font_main_color];
     [payBtn.layer setMasksToBounds:YES];
     [payBtn.layer setCornerRadius:15.0]; //设置矩形四个圆角半径
@@ -132,21 +138,22 @@
     }];
     switch ([[dic objectForKey:@"orderStatus"]integerValue]) {
         case 101:
-            [payBtn setTitle:@"继续收款" forState:UIControlStateNormal];
+            [payBtn setTitle:@"待支付" forState:UIControlStateNormal];
             [shouBtn setTitle:@"取消订单" forState:UIControlStateNormal];
             bottomView.hidden = NO;
             break;
         case 102:
-            [payBtn setTitle:@"继续收款" forState:UIControlStateNormal];
+            [payBtn setTitle:@"待支付" forState:UIControlStateNormal];
             [shouBtn setTitle:@"确认完成" forState:UIControlStateNormal];
-            bottomView.hidden = NO;
+            bottomView.hidden = YES;
             break;
         case 103:
-            [payBtn setTitle:@"继续收款" forState:UIControlStateNormal];
+            [payBtn setTitle:@"待支付" forState:UIControlStateNormal];
             [shouBtn setTitle:@"取消订单" forState:UIControlStateNormal];
             bottomView.hidden = YES;
             break;
         default:
+              bottomView.hidden = YES;
             break;
     }
 }

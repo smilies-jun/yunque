@@ -28,7 +28,7 @@
     //注册通知(接收,监听,一个通知)
     self.TopView.hidden = YES;
     [self reoadDate:@"24"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification2:) name:@"door3" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification2:) name:@"door4" object:nil];
     [self SetUI];
 }
 - (void)reoadDate:(NSString *)cataIDStr{
@@ -153,7 +153,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"secindex" object:@"3"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"secindex" object:@"4"];
 }
 /*
 /*

@@ -69,6 +69,7 @@
 		18258B6B22F1C538005B140B /* YJAllShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18258B6A22F1C538005B140B /* YJAllShopViewController.m */; };
 		18258B6E22F1C5BC005B140B /* YJDoorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18258B6D22F1C5BC005B140B /* YJDoorViewController.m */; };
 		18298360232A4BB50020C40C /* YJHtmlShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829835F232A4BB50020C40C /* YJHtmlShopDetailViewController.m */; };
+		182C84952383CB0C005B8A01 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 182C84942383CB0C005B8A01 /* logo.jpg */; };
 		182CC2FD23026ADB006E67DE /* YJUserCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CC2FC23026ADB006E67DE /* YJUserCodeViewController.m */; };
 		182CC30023029489006E67DE /* NoDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CC2FF23029489006E67DE /* NoDateTableViewCell.m */; };
 		182CC3042302974F006E67DE /* YJUSerShouKuangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CC3032302974F006E67DE /* YJUSerShouKuangViewController.m */; };
@@ -455,6 +456,7 @@
 		18258B6D22F1C5BC005B140B /* YJDoorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJDoorViewController.m; sourceTree = "<group>"; };
 		1829835E232A4BB50020C40C /* YJHtmlShopDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJHtmlShopDetailViewController.h; sourceTree = "<group>"; };
 		1829835F232A4BB50020C40C /* YJHtmlShopDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJHtmlShopDetailViewController.m; sourceTree = "<group>"; };
+		182C84942383CB0C005B8A01 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		182CC2FB23026ADB006E67DE /* YJUserCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJUserCodeViewController.h; sourceTree = "<group>"; };
 		182CC2FC23026ADB006E67DE /* YJUserCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJUserCodeViewController.m; sourceTree = "<group>"; };
 		182CC2FE23029489006E67DE /* NoDateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDateTableViewCell.h; sourceTree = "<group>"; };
@@ -1978,6 +1980,7 @@
 		2799F79422D8DDD100A128BA /* yunque */ = {
 			isa = PBXGroup;
 			children = (
+				182C84942383CB0C005B8A01 /* logo.jpg */,
 				184CD1722355A86C009FD661 /* icon0.jpg */,
 				184CD1752355A86E009FD661 /* icon1.jpg */,
 				184CD1762355A86E009FD661 /* icon2.jpg */,
@@ -2397,6 +2400,7 @@
 				2799F7A222D8DDD200A128BA /* LaunchScreen.storyboard in Resources */,
 				184CD1782355A86E009FD661 /* icon3.jpg in Resources */,
 				2799F79F22D8DDD200A128BA /* Assets.xcassets in Resources */,
+				182C84952383CB0C005B8A01 /* logo.jpg in Resources */,
 				2799F79D22D8DDD100A128BA /* Main.storyboard in Resources */,
 				187DD41D22F3C5570071668B /* check@2x.png in Resources */,
 				184CD1792355A86E009FD661 /* icon4.jpg in Resources */,
@@ -2909,9 +2913,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NVL37LAKGJ;
+				CODE_SIGN_IDENTITY = "Apple Development: Jun Yu (L8NUD6Y79W)";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0;
+				DEVELOPMENT_TEAM = 9MUF8RVCD3;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/yunque/YJYQ.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -2920,9 +2925,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yizhanq-q-q.yunque";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yizhan.yunque;
 				PRODUCT_NAME = "云鹊";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = yunquenew;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2933,9 +2939,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F4L9LL27BL;
+				CODE_SIGN_IDENTITY = "Apple Development: Jun Yu (L8NUD6Y79W)";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0;
+				DEVELOPMENT_TEAM = 9MUF8RVCD3;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/yunque/YJYQ.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -2944,9 +2951,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yizhanq-q-q.yunque";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yizhan.yunque;
 				PRODUCT_NAME = "云鹊";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = yunquenew;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

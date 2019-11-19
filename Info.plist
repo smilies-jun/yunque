@@ -17,17 +17,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>wb1681234485</string>
+			<string>wb2901917311</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wb1681234485</string>
+				<string>wb2901917311</string>
 			</array>
 		</dict>
 		<dict>
@@ -40,15 +40,15 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>wx9f953699f9664daa</string>
+			<string>wx7577b52b6457ea15</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx9f953699f9664daa</string>
+				<string>wx7577b52b6457ea15</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sinaweibo</string>
@@ -69,10 +69,9 @@ weixin
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MOBAppSecret</key>
-	<string>e898a27f07250a27011d302f30bdee81
-e898a27f07250a27011d302f30bdee81</string>
+	<string>4877ec21b4de51c4541fa61360eb59ad</string>
 	<key>MOBAppkey</key>
-	<string>2c4dbeac95014</string>
+	<string>2cd890df57ce8</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

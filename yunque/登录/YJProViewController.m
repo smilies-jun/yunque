@@ -36,7 +36,7 @@
 //    [self.RightFirstButton setImage:[UIImage imageNamed:@"分享转发"] forState:UIControlStateNormal];
     
     ActivityWebView  = [[WKWebView alloc]init];
-    ActivityWebView.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    ActivityWebView.frame = CGRectMake(0, StatusBarHeight+64, SCREEN_WIDTH, SCREEN_HEIGHT-64-40);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_WebStr]]];
     [self.view addSubview:ActivityWebView];
     // ActivityWebView.scalesPageToFit  = YES;

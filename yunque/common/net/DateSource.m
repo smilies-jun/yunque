@@ -95,8 +95,9 @@
         if (block) {
             block(responseObject,nil);
         }
+        NSLog(@" == == = =%@",task);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //NSLog(@"Error: ======================%@", error);
+        NSLog(@"Error: ======================%@", error);
         if (block) {
             block(nil,error);
         }

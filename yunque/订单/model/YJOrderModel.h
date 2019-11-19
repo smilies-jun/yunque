@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString *buyer;
 @property(nonatomic,strong)NSString *cod;
 @property(nonatomic,strong)NSString *orderStatus;
-
+@property(nonatomic,strong)NSString *orderDetailStatus;
 @property(nonatomic,strong)NSString *receiverAddress;
 
 @property(nonatomic,strong)NSString *street;

@@ -27,7 +27,7 @@
     _OrderNumberLabel  = [[UILabel alloc]init];
     _OrderNumberLabel.text= @"订单号:123728738217839";
     _OrderNumberLabel.textColor = colorWithRGB(0.27, 0.27, 0.27);
-    _OrderNumberLabel.font = [UIFont systemFontOfSize:14];
+    _OrderNumberLabel.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:_OrderNumberLabel];
     [_OrderNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(lineImageView.mas_bottom);
@@ -183,7 +183,7 @@
     _PayMoneyBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_PayMoneyBtn setTintColor:font_main_color];
 
-    [_PayMoneyBtn setTitle:@"继续收款" forState:UIControlStateNormal];
+    [_PayMoneyBtn setTitle:@"待支付" forState:UIControlStateNormal];
     [_PayMoneyBtn.layer setCornerRadius:15.0]; //设置矩形四个圆角半径
     [_PayMoneyBtn.layer setBorderWidth:1.0];
     _PayMoneyBtn.layer.borderColor = font_main_color.CGColor;
@@ -209,15 +209,15 @@
                 _SureOverBtn.hidden = NO;
                 _PayMoneyBtn.hidden= NO;
                 [_SureOverBtn setTitle:@"取消订单" forState:UIControlStateNormal];
-                [_PayMoneyBtn setTitle:@"继续收款" forState:UIControlStateNormal];
+                [_PayMoneyBtn setTitle:@"待支付" forState:UIControlStateNormal];
 
                 break;
             case 102:
                 _OrderNumberLabelSate.text= @"已生效";
-                _SureOverBtn.hidden = NO;
-                _PayMoneyBtn.hidden= NO;
+                _SureOverBtn.hidden = YES;
+                _PayMoneyBtn.hidden= YES;
                 [_SureOverBtn setTitle:@"确认完成" forState:UIControlStateNormal];
-                [_PayMoneyBtn setTitle:@"继续收款" forState:UIControlStateNormal];
+                [_PayMoneyBtn setTitle:@"待支付" forState:UIControlStateNormal];
                 break;
             case 103:
                 _OrderNumberLabelSate.text= @"已完成";
@@ -226,6 +226,8 @@
                 _PayMoneyBtn.hidden= YES;
                 break;
             default:
+                _SureOverBtn.hidden = YES;
+                _PayMoneyBtn.hidden= YES;
                  _OrderNumberLabelSate.text= @"已取消";
                 break;
         }

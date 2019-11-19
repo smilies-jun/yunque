@@ -137,7 +137,7 @@
     if ([buyIdStr integerValue]) {
         [self payPostClick];
     }else{
-        [AnimationView showString:@"请选择客户"];
+        [AnimationView showString:@"请选择收货人"];
     }
 }
 - (void)ShopListBackClick{

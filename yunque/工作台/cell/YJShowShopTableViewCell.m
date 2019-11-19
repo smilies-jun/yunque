@@ -72,7 +72,7 @@
     _ShopTagFirstLabel.layer.masksToBounds = YES;
     _ShopTagFirstLabel.textColor = colorWithRGB(0.56, 0.56, 0.56);
     _ShopTagFirstLabel.textAlignment = NSTextAlignmentCenter;
-    _ShopTagFirstLabel.font = [UIFont systemFontOfSize:12];
+    _ShopTagFirstLabel.font = [UIFont systemFontOfSize:11 ];
     [self addSubview:_ShopTagFirstLabel];
     [_ShopTagFirstLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self->_ShopImageView.mas_right).offset(20);
@@ -89,7 +89,7 @@
     _ShopTagSecondLabel.layer.cornerRadius = 5;
     _ShopTagSecondLabel.layer.masksToBounds = YES;
     _ShopTagSecondLabel.textAlignment = NSTextAlignmentCenter;
-    _ShopTagSecondLabel.font = [UIFont systemFontOfSize:12];
+    _ShopTagSecondLabel.font = [UIFont systemFontOfSize:11];
     [self addSubview:_ShopTagSecondLabel];
     [_ShopTagSecondLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self->_ShopTagFirstLabel.mas_right).offset(10);
@@ -105,7 +105,7 @@
     _ShopTagThirdLabel.layer.cornerRadius = 5;
     _ShopTagThirdLabel.layer.masksToBounds = YES;
     _ShopTagThirdLabel.textAlignment = NSTextAlignmentCenter;
-    _ShopTagThirdLabel.font = [UIFont systemFontOfSize:12];
+    _ShopTagThirdLabel.font = [UIFont systemFontOfSize:11];
     [self addSubview:_ShopTagThirdLabel];
     [_ShopTagThirdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self->_ShopTagSecondLabel.mas_right).offset(10);
@@ -121,8 +121,9 @@
        _ShopNumberLabel.text = [NSString stringWithFormat:@"本店热销%@件",model.salesVolume];
         _ShopMoneyLabel.text = [NSString stringWithFormat:@"￥%@",model.marketRefrencePrice];
         [_ShopImageView sd_setImageWithURL:[NSURL URLWithString:model.productImg] placeholderImage:[UIImage imageNamed:@"imageDefault"]];
+        //NSLog(@"model === %@",model.keyWord);
         if (model.keyWord.length) {
-            NSArray  *array = [model.keyWord componentsSeparatedByString:@";"];//其中"-"号为分隔符
+            NSArray  *array = [model.keyWord componentsSeparatedByString:@"；"];//其中"-"号为分隔符
             switch (array.count) {
                 case 1:
                     _ShopTagFirstLabel.text = [NSString stringWithFormat:@"%@",[array objectAtIndex:0]];;

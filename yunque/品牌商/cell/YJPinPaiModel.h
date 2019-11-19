@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (nonatomic, copy) NSArray *masterImageUrls;
-
+@property (nonatomic, copy) NSArray *wheelImageUrls;
 @property (nonatomic, copy) NSString *productAdvanta;
 
 @property (nonatomic, copy) NSString *productImg;

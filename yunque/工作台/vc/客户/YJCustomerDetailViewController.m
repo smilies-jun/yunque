@@ -29,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.TopView.hidden = NO;
-    self.TopTitleLabel.text= @"客户信息";
+    self.TopTitleLabel.text= @"收货人信息";
     self.view.backgroundColor = colorWithRGB(0.95, 0.95, 0.95);
     [self.BackButton addTarget:self action:@selector(ShopListBackClick) forControlEvents:UIControlEventTouchUpInside];
     UIButton *rightBtn = [[UIButton alloc]init];
@@ -78,7 +78,7 @@
 
 - (void)setUI{
     choseNameView = [[CustomChooseView alloc]init];
-    choseNameView.NameLabel.text = @"客户姓名";
+    choseNameView.NameLabel.text = @"收货人姓名";
     choseNameView.ChooseLabel.text = [NSString stringWithFormat:@"%@",[mydic objectForKey:@"nickName"]];
     [self.view addSubview:choseNameView];
     [choseNameView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,7 +88,7 @@
         make.height.mas_equalTo(60);
     }];
     choseSexView = [[CustomChooseView alloc]init];
-    choseSexView.NameLabel.text = @"客户姓别";
+    choseSexView.NameLabel.text = @"收货人姓别";
     if ([[mydic objectForKey:@"gender"]integerValue] == 1) {
        choseSexView.ChooseLabel.text =@"男";
     }else{
@@ -103,7 +103,7 @@
         make.height.mas_equalTo(60);
     }];
     choseAdressView = [[CustomChooseView alloc]init];
-    choseAdressView.NameLabel.text = @"客户地址";
+    choseAdressView.NameLabel.text = @"收货人地址";
      choseAdressView.ChooseLabel.text = [NSString stringWithFormat:@"%@%@%@",[mydic objectForKey:@"province"],[mydic objectForKey:@"city"],[mydic objectForKey:@"town"]];
     [self.view addSubview:choseAdressView];
     [choseAdressView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -136,7 +136,7 @@
     }];
     
     choseNameTypeView = [[CustomChooseView alloc]init];
-    choseNameTypeView.NameLabel.text = @"客户需求";
+    choseNameTypeView.NameLabel.text = @"收货人需求";
     choseNameTypeView.ChooseLabel.text = [NSString stringWithFormat:@"%@",[mydic objectForKey:@"demand"]];
     [self.view addSubview:choseNameTypeView];
     [choseNameTypeView mas_makeConstraints:^(MASConstraintMaker *make) {

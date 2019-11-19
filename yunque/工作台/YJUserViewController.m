@@ -15,12 +15,13 @@
 #import "YJTongJiViewController.h"
 #import "YJUSerShouKuangViewController.h"
 #import "JSCartViewController.h"
+#import "YJSetDetailTableViewCell.h"
 
-
-@interface YJUserViewController (){
+@interface YJUserViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *xiaoshouStr;
     NSString *shoukuangStr;
     NSString *daishoukuangStr;
+    UITableView *shopListTableview;
 }
 @property(nonatomic,strong)UIImageView*XiaoShouImageView;
 
@@ -107,15 +108,96 @@
     NSString *url = [NSString stringWithFormat:@"%@/account/financialOverview",BASE_URL];
     [[DateSource sharedInstance]requestHtml5WithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         //self->myArray = [result objectForKey:@"data"];
-        self->xiaoshouStr = [[result objectForKey:@"data"]objectForKey:@"grossSales"];
-        self->shoukuangStr =[[result objectForKey:@"data"]objectForKey:@"totalReceipt"];
-        self->daishoukuangStr =[[result objectForKey:@"data"]objectForKey:@"receivable"];
+        if ([[result objectForKey:@"code"] integerValue]==200) {
+                    self->xiaoshouStr = [[result objectForKey:@"data"]objectForKey:@"grossSales"];
+                 self->shoukuangStr =[[result objectForKey:@"data"]objectForKey:@"totalReceipt"];
+                 self->daishoukuangStr =[[result objectForKey:@"data"]objectForKey:@"receivable"];
+        }
+      
         [self setTopUI];
-        [self setJingYingUI];
-        [self setGuanLiUI];
+        [self setFreshUI];
+       // [self setJingYingUI];
+       // [self setGuanLiUI];
         
     }];
     
+}
+- (void)setFreshUI{
+    shopListTableview = [[UITableView alloc]init];
+    shopListTableview.frame = CGRectMake(0, StatusBarHeight+64+200, SCREEN_WIDTH, 180);
+    shopListTableview.delegate = self;
+    shopListTableview.dataSource = self;
+    shopListTableview.tableFooterView = [UIView new];
+    [self.view addSubview:shopListTableview];
+}
+//设置行数
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 3;
+    
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+//组头高度
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
+//cell的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *identifier = @"detailProidentifier";
+    
+    YJSetDetailTableViewCell   *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[YJSetDetailTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        [cell configUI:indexPath];
+    }
+    switch (indexPath.row) {
+        case 0:
+            cell.iconImageView.image = [UIImage imageNamed:@"客户1"];
+            cell.NameLabel.text = @"收货人设置";
+            break;
+        case 1:
+            cell.iconImageView.image = [UIImage imageNamed:@"员工1"];
+            cell.NameLabel.text = @"员工";
+            break;
+        case 2:
+            cell.iconImageView.image = [UIImage imageNamed:@"统计1"];
+            cell.NameLabel.text = @"价格设置";
+            break;
+        default:
+            break;
+    }
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    return cell;
+    
+    
+    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row ==0) {
+      YJCustomerViewController *vc = [[YJCustomerViewController alloc]init];
+       [self.navigationController pushViewController:vc animated:NO];
+    }else if (indexPath.row == 1){
+        YJKeHuViewController *vc = [[YJKeHuViewController alloc]init];
+          [self.navigationController pushViewController:vc animated:NO];
+    }else if (indexPath.row == 2){
+       YJTongJiViewController *vc = [[YJTongJiViewController alloc]init];
+          [self.navigationController pushViewController:vc animated:NO];
+    }else{
+     
+    }
+   
 }
 - (void)setTopUI{
     _XiaoShouImageView = [[UIImageView alloc]init];
@@ -137,12 +219,12 @@
      }else{
          xiaoshouLabelNumber.text = @"0.00";
      }
-    xiaoshouLabelNumber.textAlignment = NSTextAlignmentCenter;
+    xiaoshouLabelNumber.textAlignment = NSTextAlignmentLeft;
     xiaoshouLabelNumber.font = [UIFont boldSystemFontOfSize:24];
      xiaoshouLabelNumber.textColor = [UIColor blackColor];
      [_XiaoShouImageView addSubview:xiaoshouLabelNumber];
      [xiaoshouLabelNumber mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(10);
+        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(30);
         make.top.mas_equalTo(_XiaoShouImageView.mas_top).offset(20);
         make.width.mas_equalTo(120);
         make.height.mas_equalTo(20);
@@ -151,11 +233,11 @@
     UILabel *xiaoshouLabel = [[UILabel alloc]init];
     xiaoshouLabel.text = @"销售额(元)";
     xiaoshouLabel.font = [UIFont systemFontOfSize:12];
-    xiaoshouLabel.textAlignment = NSTextAlignmentCenter;
+    xiaoshouLabel.textAlignment = NSTextAlignmentLeft;
     xiaoshouLabel.textColor = [UIColor blackColor];
     [_XiaoShouImageView addSubview:xiaoshouLabel];
     [xiaoshouLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(10);
+        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(30);
         make.top.mas_equalTo(xiaoshouLabelNumber.mas_bottom).offset(10);
         make.width.mas_equalTo(120);
         make.height.mas_equalTo(20);
@@ -171,24 +253,24 @@
       }else{
           shouNumber.text = @"0.00";
       }
-    shouNumber.textAlignment = NSTextAlignmentCenter;
+    shouNumber.textAlignment = NSTextAlignmentLeft;
     shouNumber.font = [UIFont boldSystemFontOfSize:24];
     shouNumber.textColor = [UIColor blackColor];
       [_XiaoShouImageView addSubview:shouNumber];
       [shouNumber mas_makeConstraints:^(MASConstraintMaker *make) {
-          make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(10);
+          make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(30);
           make.top.mas_equalTo(xiaoshouLabel.mas_bottom).offset(30);
-          make.width.mas_equalTo(120);
+          make.width.mas_equalTo(160);
           make.height.mas_equalTo(20);
       }];
     UILabel *shoukLabel = [[UILabel alloc]init];
     shoukLabel.text = @"代收额(元)";
     shoukLabel.font = [UIFont systemFontOfSize:12];
-    shoukLabel.textAlignment = NSTextAlignmentCenter;
+    shoukLabel.textAlignment = NSTextAlignmentLeft;
     shoukLabel.textColor = [UIColor blackColor];
     [_XiaoShouImageView addSubview:shoukLabel];
     [shoukLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(10);
+        make.left.mas_equalTo(_XiaoShouImageView.mas_left).offset(30);
         make.top.mas_equalTo(shouNumber.mas_bottom).offset(10);
         make.width.mas_equalTo(120);
         make.height.mas_equalTo(20);
@@ -199,7 +281,7 @@
      }else{
          shouLabelNumber.text = @"0.00";
      }
-    shouLabelNumber.textAlignment = NSTextAlignmentCenter;
+    shouLabelNumber.textAlignment = NSTextAlignmentLeft;
     shouLabelNumber.font = [UIFont boldSystemFontOfSize:24];
      shouLabelNumber.textColor = [UIColor blackColor];
      [_XiaoShouImageView addSubview:shouLabelNumber];
@@ -214,7 +296,7 @@
     shouLabel.text = @"收款额(元)";
     shouLabel.font = [UIFont systemFontOfSize:12];
 
-    shouLabel.textAlignment = NSTextAlignmentCenter;
+    shouLabel.textAlignment = NSTextAlignmentLeft;
     shouLabel.textColor = [UIColor blackColor];
     [_XiaoShouImageView addSubview:shouLabel];
     [shouLabel mas_makeConstraints:^(MASConstraintMaker *make) {

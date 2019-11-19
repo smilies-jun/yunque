@@ -47,7 +47,7 @@
     style.bottomLineColor = font_main_color;
     style.titleMargin = 60;
     // 设置标题内容
-    NSArray <NSString *>*titles = @[@"全部", @"已创建",@"已生效",@"已取消",@"已完成"];
+    NSArray <NSString *>*titles = @[@"全部", @"已创建",@"进货中",@"已取消",@"已完成"];
     YJAllOrderViewController *allVC = [[YJAllOrderViewController alloc] init];
     allVC.view.backgroundColor = [UIColor whiteColor];
     [self addChildViewController:allVC];

@@ -188,10 +188,10 @@
                 YJOrderModel *model = [DataArray objectAtIndex:indexPath.row];
                 cell.orderModel = model;
             }
-       cell.PayMoneyBtn.tag = 100+indexPath.row;
-       cell.SureOverBtn.tag = 101+indexPath.row;
-       [cell.PayMoneyBtn addTarget:self action:@selector(payClick:) forControlEvents:UIControlEventTouchUpInside];
-       [cell.SureOverBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
+        cell.PayMoneyBtn.tag = 100+indexPath.row;
+        cell.SureOverBtn.tag = 101+indexPath.row;
+        [cell.PayMoneyBtn addTarget:self action:@selector(payClick:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.SureOverBtn addTarget:self action:@selector(sureClick:) forControlEvents:UIControlEventTouchUpInside];
 
 //            if ([cell.stageModel.state integerValue] == 2) {
 //                cell.RightImageView.userInteractionEnabled = YES;
@@ -231,7 +231,7 @@
     YJOrderModel *model = [DataArray objectAtIndex:index-100];
     YJPayViewController *vc = [[YJPayViewController alloc]init];
     vc.shopId = model.orderId;
-    vc.moneyStr = model.noPaidAmount;
+    vc.moneyStr = model.orderTotalAmount;
     [self.navigationController pushViewController:vc animated:NO];
     
 }

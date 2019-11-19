@@ -59,7 +59,7 @@
         make.height.mas_equalTo(80);
     }];
     payBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    payBtn.backgroundColor = [UIColor redColor];
+    payBtn.backgroundColor = font_main_color;
     payBtn.layer.masksToBounds = YES;
     payBtn.layer.cornerRadius = 5.0;
     [payBtn setTitle:@"支付" forState:UIControlStateNormal];
@@ -181,7 +181,7 @@
     return [UIView new];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 //组头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -215,8 +215,9 @@
             cell = [[YJPayTopTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             [cell configUI:indexPath];
         }
-        if (_moneyStr.length) {
-            cell.AdressTextField.text = _moneyStr;
+      
+        if ([_moneyStr floatValue] > 0) {
+            cell.AdressTextField.text = [NSString stringWithFormat:@"%@",_moneyStr];
         }else{
             cell.AdressTextField.text = @"100";
         }
@@ -311,8 +312,8 @@
         NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:indexPath.section];
         [tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
         
-        NSIndexSet *indexSet111 = [[NSIndexSet alloc] initWithIndex:2];
-        [tableView reloadSections:indexSet111 withRowAnimation:UITableViewRowAnimationNone];
+//        NSIndexSet *indexSet111 = [[NSIndexSet alloc] initWithIndex:2];
+  //      [tableView reloadSections:indexSet111 withRowAnimation:UITableViewRowAnimationNone];
         
         
     }else if(indexPath.section ==2){

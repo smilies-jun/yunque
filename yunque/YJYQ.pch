@@ -28,10 +28,10 @@
 #import "UIButton+changeEffectiveArea.h"
 
 #define APP_SECRET @"cdzbMLE20171115"
-
-
-//#define BASE_URL @"http://192.168.3.9:9030/yunque"
-//#define BASE_URL @"http://192.168.3.28:9030/yunque"
+//#define BASE_URL @"http://test.yzyunque.com/yunque"
+//#define BASE_URL @"http://192.168.3.27:9031/yunque"
+//#define BASE_URL @"http://192.168.3.9:9031/yunque"
+//#define BASE_URL @"http://192.168.3.28:9031/yunque"
 #define BASE_URL @"http://a.yzyunque.com/yunque"
 
 

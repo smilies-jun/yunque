@@ -35,10 +35,10 @@
     [ShareSDK registPlatforms:^(SSDKRegister *platformsRegister) {
         
         //微信
-        [platformsRegister setupWeChatWithAppId:@"wx9f953699f9664daa" appSecret:@"67cc9267bee919125ae8c4a7d4aeb4e9"];
+        [platformsRegister setupWeChatWithAppId:@"wx7577b52b6457ea15" appSecret:@"11a930225faaad89b8e81abba48345d6"];
         
         //新浪
-        [platformsRegister setupSinaWeiboWithAppkey:@"1681234485" appSecret:@"da35c88e226db85b2e54d1b5e0eba445" redirectUrl:@"http://39.100.129.115:3000"];
+        [platformsRegister setupSinaWeiboWithAppkey:@"2901917311" appSecret:@"ce3fa69a9e9edc5607cb96549eae4529" redirectUrl:@"http://www.yzyunque.com"];
 
     }];
    // [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
@@ -55,14 +55,14 @@
         NSLog(@"已经登陆");
         [self.window setRootViewController:self.viewController];
         [self.window makeKeyAndVisible];
-//        KSGuaidManager.images = @[[UIImage imageNamed:@"guide01"],
-//                              [UIImage imageNamed:@"guide02"],
-//                              [UIImage imageNamed:@"guide03"],
-//                              [UIImage imageNamed:@"guide04"]];
-//    
-//    KSGuaidManager.shouldDismissWhenDragging = YES;
-//    
-//    [KSGuaidManager begin];
+        KSGuaidManager.images = @[[UIImage imageNamed:@"导购平台"],
+                              [UIImage imageNamed:@"量身定制"],
+                                  [UIImage imageNamed:@"店铺管理"]];
+                             
+    
+    KSGuaidManager.shouldDismissWhenDragging = YES;
+    
+    [KSGuaidManager begin];
         [NSThread sleepForTimeInterval:2.0];
         [self customizeInterface];
   //  }

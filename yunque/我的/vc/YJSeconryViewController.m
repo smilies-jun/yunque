@@ -114,11 +114,11 @@
     NSString *url = [NSString stringWithFormat:@"%@/client/userInfo",BASE_URL];
     [[DateSource sharedInstance]requestHomeWithParameters:nil withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
         if ([[result objectForKey:@"code"]integerValue] == 200) {
-            
+              self->userDic =[result objectForKey:@"data"];
         }else{
             [AnimationView showString:[result objectForKey:@"errmsg"]];
         }
-        self->userDic =[result objectForKey:@"data"];
+      
         [self SetUi];
     }];
   
@@ -149,7 +149,7 @@
     if (section == 0) {
         return 1;
     }else if (section == 1){
-        return 4;
+        return 3;
     }else{
         return 2;
     }
@@ -327,11 +327,11 @@
                           vc.cataIDArray4 = cateIDArray4;
             [self.navigationController pushViewController:vc animated:NO];
         }else if (indexPath.row == 5){
-            NSMutableString* str=[[NSMutableString alloc]initWithFormat:@"tel:%@",@"186xxxx6979"];[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+            NSMutableString* str=[[NSMutableString alloc]initWithFormat:@"tel:%@",@"0579-87739987"];[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }
     }else{
         if (indexPath.row == 0) {
-            NSMutableString* str=[[NSMutableString alloc]initWithFormat:@"tel:%@",@"186xxxx6979"];[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+            NSMutableString* str=[[NSMutableString alloc]initWithFormat:@"tel:%@",@"0579-87739987"];[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }else{
             YJUserSetViewController *vc = [[YJUserSetViewController alloc]init];
                       [self.navigationController pushViewController:vc animated:NO];

@@ -37,9 +37,9 @@
     // Do any additional setup after loading the view.
     self.TopView.hidden = NO;
     if ([_type integerValue ] == 1) {
-         self.TopTitleLabel.text= @"修改客户";
+         self.TopTitleLabel.text= @"修改收货人信息";
     }else{
-         self.TopTitleLabel.text= @"新建客户";
+         self.TopTitleLabel.text= @"新建收货人信息";
         
     }
    
@@ -79,8 +79,8 @@
     [self.view addSubview:scrollView];
     
     choseNameView = [[CustomView alloc]init];
-    choseNameView.NameLabel.text = @"客户名称";
-    choseNameView.NameTextField.placeholder = @"请填写客户名称";
+    choseNameView.NameLabel.text = @"收货人名称";
+    choseNameView.NameTextField.placeholder = @"请填写收货人名称";
     if ([_customerid integerValue]) {
         choseNameView.NameTextField.text = _name;
       //  choseNameView.NameTextField.enabled = NO;
@@ -96,7 +96,7 @@
         make.height.mas_equalTo(60);
     }];
     choseSex = [[YJChoseBtnView alloc]init];
-    choseSex.NameLabel.text = @"客户性别";
+    choseSex.NameLabel.text = @"收货人性别";
     choseSex.ChooseFirstLabel.text = @"男";
     choseSex.ChooseSecondLabel.text = @"女";
     choseSex.ChooseFirstbutton.tag = 101;
@@ -113,8 +113,8 @@
         make.height.mas_equalTo(60);
     }];
     choseAdressView = [[CustomChooseView alloc]init];
-    choseAdressView.NameLabel.text = @"客户地址";
-    choseAdressView.ChooseLabel.text = @"请选择客户地址";
+    choseAdressView.NameLabel.text = @"收货人地址";
+    choseAdressView.ChooseLabel.text = @"请选择收货人地址";
     choseAdressView.userInteractionEnabled = YES;
     UITapGestureRecognizer  *choseTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(choseAdressClick)];
     [choseAdressView addGestureRecognizer:choseTap];
@@ -161,8 +161,8 @@
     }];
 
     choseCustomerDetailView = [[CustomView alloc]init];
-    choseCustomerDetailView.NameLabel.text = @"客户需求";
-    choseCustomerDetailView.NameTextField.placeholder = @"请填写客户需求";
+    choseCustomerDetailView.NameLabel.text = @"收货人需求";
+    choseCustomerDetailView.NameTextField.placeholder = @"请填写收货人需求";
     choseCustomerDetailView.NameTextField.delegate = self;
     [scrollView addSubview:choseCustomerDetailView];
     [choseCustomerDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -211,7 +211,7 @@
                         if (chosePhonelView.NameTextField.text.length) {
                           [self postClick];
                         }else{
-                          [AnimationView showString:@"请填写客户电话号码"];
+                          [AnimationView showString:@"请填写收货人电话号码"];
                         }
                             
                             
@@ -227,7 +227,7 @@
              [AnimationView showString:@"请选择地址"];
         }
     }else{
-        [AnimationView showString:@"请输入客户名称"];
+        [AnimationView showString:@"请输入收货人名称"];
     }
 
 }
@@ -267,12 +267,9 @@
     }
   
     
-    NSLog(@"dic = %@",dic);
     
     NSString *url = [NSString stringWithFormat:@"%@/customer/beforeAdd",BASE_URL];
     [[DateSource sharedInstance]requestHomeWithParameters:(NSMutableDictionary *)dic withUrl:url withTokenStr:tokenID usingBlock:^(NSDictionary *result, NSError *error) {
-        NSLog(@"re == %@",result);
-         NSLog(@"errr == %@",error);
         if ([[result objectForKey:@"code"]integerValue] == 200) {
             for (UIViewController *controller in self.navigationController.viewControllers) {
                 if ([controller isKindOfClass:[YJCustomerViewController class]]) {

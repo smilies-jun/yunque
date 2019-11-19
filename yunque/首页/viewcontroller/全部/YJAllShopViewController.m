@@ -69,13 +69,17 @@
     style.bottomLineColor = font_main_color;
     
     // 设置标题内容
-    NSArray <NSString *>*titles = @[@"门类", @"锁具 ",@"工艺品",@"其他"];
+    NSArray <NSString *>*titles = @[@"标门",@"非标门", @"锁具 ",@"工艺品",@"其他"];
     
   
     YJDoorViewController *door = [[YJDoorViewController alloc] init];
     door.distributor = _distributor ;
     door.view.backgroundColor = [UIColor whiteColor];
     [self addChildViewController:door];
+    
+    YJGongYiViewController   *yi = [[YJGongYiViewController alloc] init];
+    yi.view.backgroundColor = [UIColor whiteColor];
+    [self addChildViewController:yi];
     
     YJMenPeiViewController *pei = [[YJMenPeiViewController alloc] init];
     pei.view.backgroundColor = [UIColor whiteColor];
@@ -92,9 +96,7 @@
     suo.distributor = _distributor ;
     [self addChildViewController:suo];
     
-//    YJGongYiViewController   *yi = [[YJGongYiViewController alloc] init];
-//    yi.view.backgroundColor = [UIColor whiteColor];
-//    [self addChildViewController:yi];
+  
     
     // 创建对应的DNSPageView，并设置它的frame
     if (iPhoneXAndXS) {
@@ -140,8 +142,11 @@
       return   [_titleArray2 count];
     }else if (secIndex == 2){
        return  [_titleArray3 count];
-    }else{
-      return   [_titleArray4 count];
+    }else if (secIndex == 3){
+       return  [_titleArray4 count];
+    }
+    else{
+      return   [_titleArray5 count];
     }
 //    }else{
 //       return  [_titleArray5 count];
@@ -189,8 +194,11 @@
          cell.btnLabel.text = [_titleArray2 objectAtIndex:indexPath.row];
     }else if (secIndex == 2){
          cell.btnLabel.text = [_titleArray3 objectAtIndex:indexPath.row];
-    }else{
+    }else if (secIndex == 3){
          cell.btnLabel.text = [_titleArray4 objectAtIndex:indexPath.row];
+    }
+    else{
+         cell.btnLabel.text = [_titleArray5 objectAtIndex:indexPath.row];
     }
     
     //  [cell.EditBtn addTarget:self action:@selector(editTableview) forControlEvents:UIControlEventTouchUpInside];
@@ -219,8 +227,10 @@
          [[NSNotificationCenter defaultCenter] postNotificationName:@"door2" object:[NSString stringWithFormat:@"%@",[_cataIDArray2 objectAtIndex:indexPath.row]]];
     }else if (secIndex == 2){
          [[NSNotificationCenter defaultCenter] postNotificationName:@"door3" object:[NSString stringWithFormat:@"%@",[_cataIDArray3 objectAtIndex:indexPath.row]]];
-    }else{
+    }else if (secIndex == 3){
          [[NSNotificationCenter defaultCenter] postNotificationName:@"door4" object:[NSString stringWithFormat:@"%@",[_cataIDArray4 objectAtIndex:indexPath.row]]];
+    }else{
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"door5" object:[NSString stringWithFormat:@"%@",[_cataIDArray5 objectAtIndex:indexPath.row]]];
     }
 //    else{
 //         [[NSNotificationCenter defaultCenter] postNotificationName:@"door5" object:[NSString stringWithFormat:@"%@",[_cataIDArray5 objectAtIndex:indexPath.row]]];
